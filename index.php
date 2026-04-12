@@ -1,5 +1,5 @@
 <?php
-include_once("conexao.php");
+include_once("./config/conexao.php");
 
 $idAutor = isset($_GET['autor']) ? (int) $_GET['autor'] : null;
 
@@ -24,80 +24,80 @@ $result = $conn->query($sqlLivros);
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biblioteca Imperial</title>
-
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- 🏛️ SIDEBAR -->
-    <aside class="sidebar">
-        <h2>Biblioteca atenas</h2>
-        <nav>
-            <a href="#">📚 Acervo</a>
-            <a href="cadastro.php">➕ Cadastro</a>
-        </nav>
-    </aside>
+        <!-- 🏛️ SIDEBAR -->
+        <aside class="sidebar">
+            <h2>Biblioteca atenas</h2>
+            <nav>
+                <a href="#">📚 Acervo</a>
+                <a href="./pages/cadastro.php">➕ Cadastro</a>
+            </nav>
+        </aside>
 
-    <!-- 📖 CONTEÚDO -->
-    <main class="content">
+        <!-- 📖 CONTEÚDO -->
+        <main class="content">
 
-        <header class="header">
-            <h1>Biblioteca Imperial de Atenas</h1>
-        </header>
+            <header class="header">
+                <h1>Biblioteca Imperial de Atenas</h1>
+            </header>
 
-        <!-- 📜 CADASTRO -->
+            <!-- 📜 CADASTRO -->
 
 
-        <!-- 🔎 FILTRO -->
-        <section class="card">
-            <h2>Filtrar por Autor</h2>
+            <!-- 🔎 FILTRO -->
+            <section class="card">
+                <h2>Filtrar por Autor</h2>
 
-            <form method="GET" class="form">
-                <select name="autor">
-                    <option value="">Todos</option>
+                <form method="GET" class="form">
+                    <select name="autor">
+                        <option value="">Todos</option>
 
-                    <?php
-                    $autores->data_seek(0);
-                    while($autor = $autores->fetch_assoc()):
-                    ?>
-                        <option value="<?= $autor['id_autor'] ?>"
-                            <?= ($idAutor == $autor['id_autor']) ? 'selected' : '' ?>>
-                            <?= $autor['nome'] ?>
-                        </option>
+                        <?php
+                        $autores->data_seek(0);
+                        while ($autor = $autores->fetch_assoc()):
+                        ?>
+                            <option value="<?= $autor['id_autor'] ?>"
+                                <?= ($idAutor == $autor['id_autor']) ? 'selected' : '' ?>>
+                                <?= $autor['nome'] ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+
+                    <button type="submit">Filtrar</button>
+                </form>
+            </section>
+
+
+
+
+            <!-- 📚 LISTA -->
+            <section class="card">
+                <h2>Acervo</h2>
+
+                <div class="grid-livros">
+                    <?php while ($livro = $result->fetch_assoc()): ?>
+                        <div class="livro">
+                            <h3><?= $livro['titulo'] ?></h3>
+                            <p><?= $livro['ano_publicacao'] ?></p>
+                            <span><?= $livro['nome'] ?></span>
+                        </div>
                     <?php endwhile; ?>
-                </select>
+                </div>
 
-                <button type="submit">Filtrar</button>
-            </form>
-        </section>
+            </section>
+        </main>
 
-
-
-
-        <!-- 📚 LISTA -->
-        <section class="card">
-            <h2>Acervo</h2>
-
-            <div class="grid-livros">
-                <?php while($livro = $result->fetch_assoc()): ?>
-                    <div class="livro">
-                        <h3><?= $livro['titulo'] ?></h3>
-                        <p><?= $livro['ano_publicacao'] ?></p>
-                        <span><?= $livro['nome'] ?></span>
-                    </div>
-                <?php endwhile; ?>
-            </div>
-
-        </section>
-
-    </main>.
-
-</div>
+    </div>
 
 </body>
+
 </html>
