@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
+    // senha sendo passada para o banco criptografada
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
     // 1. VERIFICAÇÃO

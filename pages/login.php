@@ -4,7 +4,7 @@ include("../config/conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST['email,nome_regis'];
+    $email = $_POST['email'];
     $senha = $_POST['senha'];
 
     $sql = "SELECT id_regi, senha_regi FROM registro WHERE email_regi = ?";
@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $result->fetch_assoc();
 
-        if ($senha == $user['senha_regi']) {
+        // Verificação da senha, que está sendo registrada no banco criptografada, la na pagina login 
+        if (password_verify($senha, $user['senha_regi'])) {
             echo "Login OK!";
         } else {
             echo "Senha incorreta!";
@@ -85,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label>Senha</label>
-                    <input type="senha" id="senha" name="senha" placeholder="••••••••" />
+                    <input type="password" id="senha" name="senha" placeholder="••••••••" />
                 </div>
 
                 <button type="button" onclick="Login()" class="login-btn">Login</button>
