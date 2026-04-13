@@ -1,8 +1,8 @@
 <?php
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db   = "Biblioteca";
+$host = "athenas.mysql.dbaas.com.br";
+$user = "athenas";
+$pass = "Crocancia123!";
+$db   = "athenas";
 
 $conn = new mysqli($host, $user, $pass, $db);
 
