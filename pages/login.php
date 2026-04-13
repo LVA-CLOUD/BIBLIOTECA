@@ -4,7 +4,7 @@ include("../config/conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $email = $_POST['email'];
+    $email = $_POST['email,nome_regis'];
     $senha = $_POST['senha'];
 
     $sql = "SELECT id_regi, senha_regi FROM registro WHERE email_regi = ?";
@@ -107,4 +107,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="../assets/JS/login.js"></script>
 
-    /body>
+</body>

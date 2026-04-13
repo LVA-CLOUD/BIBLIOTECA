@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
     <title>Atenas</title>
 </head>
 
-<body>
+<body> 
     <header>
 
         <nav>
@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem1">
-                    <img src="./img/lata.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/livroVidasSecas.png" alt="Imagem1">
+                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Imagem2">
                 </div>
             </div>
 
