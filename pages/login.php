@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $user = $result->fetch_assoc();
 
-        // Verificação da senha, que está sendo registrada no banco criptografada, la na pagina login 
+        // Verificação da senha, que está sendo registrada no banco criptografada, la na pagina registrar.php 
+        // "password_verify" serve para ver a criptografia da senha que esta sendo feita na pag registrar.php
         if (password_verify($senha, $user['senha_regi'])) {
             echo "Login OK!";
         } else {

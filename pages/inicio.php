@@ -11,7 +11,7 @@
     <title>Atenas</title>
 </head>
 
-<body> 
+<body>
     <header>
 
         <nav>
@@ -23,11 +23,12 @@
             </ul>
         </nav>
 
-        <img src="./img/logo.png" alt="Logo">
+        <img src="../assets/img/LOGOS/logo1.png" alt="Logo">
 
         <div class="icons">
             <i class="bi bi-search"></i>
-            <i class="bi bi-person-fill"></i>
+            <a href="login.php"><i class="bi bi-person-fill"></i></a>
+
         </div>
     </header>
 
@@ -35,13 +36,12 @@
         <section class="slider">
 
             <div class="slider-content ativo">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/livroVidasSecas2.png" alt="Algo Relacionado a Imagem">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <h1>Vidas Secas</h1>
+                    <p>"Vidas Secas" é a obra mais emblemática do escritor brasileiro moderno Graciliano Ramos (1892-1953). O livro foi publicado em 1938 e trata-se de um romance documental inspirado nas experiências do autor.
+                        O local de desenvolvimento da estória é o sertão brasileiro nordestino, onde Graciliano Ramos retrata a vida de uma família de retirantes, traçando a figura do sertanejo. Ao mesmo tempo, ele explora os temas da miséria e da seca do Nordeste.</p>
                     <button>Adquira Agora</button>
                 </div>
 
@@ -55,16 +55,15 @@
                 <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro2</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <h1>Hora da Estrela</h1>
+                    <p>“A Hora da Estrela” é o último romance da escritora brasileira Clarice Lispector, publicado em 1977. Trata-se de uma obra instigante e original, de cunho autobiográfico, pertencente à Terceira Geração Modernista.
+                        É classificada como um romance intimista, também conhecido como romance psicológico, estilo em que a autora se destaca. Afinal, a obra de Clarice é marcada por suas emoções e sentimentos pessoais.</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem2">
-                    <img src="./img/lata.png" alt="Imagem3">
+                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Imagem2">
                 </div>
             </div>
 
@@ -72,7 +71,7 @@
                 <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro3</h1>
+                    <h1>Pica-Pau Amarelo</h1>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
                         aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
                         molestias eaque fugit?</p>
@@ -80,8 +79,8 @@
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem3">
-                    <img src="./img/lata.png" alt="Imagem4">
+                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/hobbit.png" alt="Imagem2">
                 </div>
             </div>
 
@@ -144,6 +143,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/SplitText.min.js"></script>
     <!-- JS -->
-     <script src="../assets/js/inicio.js"></script>
+    <script src="../assets/js/inicio.js"></script>
 
 </body>
