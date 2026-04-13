@@ -1,19 +1,14 @@
 <?php
 include_once("../config/conexao.php");
 
+
 // 🔹 Buscar autores (para usar no select de livro)
 $sqlAutores = "SELECT * FROM autores ORDER BY nome";
 $autores = $conn->query($sqlAutores);
 
 ?>
 
-<form method="POST">
-    <input type="text" name="nome" placeholder="Nome" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="number" name="idade" placeholder="Idade"><br>
-    <input type="password" name="senha" placeholder="Senha" required><br>
-    <button type="submit">Cadastrar</button>
-</form>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">

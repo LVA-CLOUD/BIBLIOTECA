@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include("../config/conexao.php");
 
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Senha incorreta!";
         }
+
     } else {
         echo "Usuário não encontrado!";
     }
@@ -33,12 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/login.css">
     <title>Login</title>
 </head>
@@ -106,4 +107,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="../assets/JS/login.js"></script>
 
-</body>
+    /body>

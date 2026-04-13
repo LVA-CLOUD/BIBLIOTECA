@@ -43,6 +43,7 @@ body::before {
     align-items: center;
     bottom: 90%;
     position: fixed;
+    gap: 5px;
 }
 
 .bibli h1 {

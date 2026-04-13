@@ -21,3 +21,18 @@ form.onsubmit = async (e) => {
 };
 
 carregarLivros();
+
+function abrirModal(id, titulo) {
+    livroSelecionado = id;
+
+    const modal = document.getElementById('modal');
+    const tituloEl = document.getElementById('modalTitulo');
+
+    if (!modal || !tituloEl) {
+        console.error("Modal não encontrado");
+        return;
+    }
+
+    tituloEl.innerText = titulo;
+    modal.style.display = 'flex';
+}

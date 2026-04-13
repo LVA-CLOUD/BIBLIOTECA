@@ -88,20 +88,43 @@ function typeWriter(text, element, speed) {
 
 // Botao Login
 
-function Login() {
+gsap.registerPlugin(Draggable);
 
+// ... (Mantenha seu código da lâmpada e GSAP que já funciona aqui) ...
+
+function Login() {
     let email = document.getElementById("email").value;
     let senha = document.getElementById("senha").value;
+
+    if (!email || !senha) {
+        alert("Preencha todos os campos!");
+        return;
+    }
 
     fetch("login.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: "email=" + email + "&senha=" + senha
+        body: "email=" + encodeURIComponent(email) + "&senha=" + encodeURIComponent(senha)
     })
     .then(response => response.text())
     .then(data => {
-        alert(data); // aqui mostra resultado do PHP
+        const resposta = data.trim();
+
+        if (resposta === "Login Funcionario") {
+            // Redireciona para a pasta principal/cadastro
+            window.location.href = "index.php"; 
+        } else if (resposta === "Login Comum") {
+            // Redireciona para a pasta de início
+            window.location.href = "inicio/index.php";
+        } else {
+            // Exibe o erro vindo do PHP (Senha incorreta, etc)
+            alert(resposta);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert("Erro na conexão com o servidor.");
     });
 }

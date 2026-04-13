@@ -3,27 +3,40 @@ session_start();
 include_once("../config/conexao.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome'];
+    $nome  = $_POST['nome'];
+    $user  = $_POST['user'];
+    $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT * FROM login WHERE nome = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $nome);
-    $stmt->execute();
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    $result = $stmt->get_result();
+    // 1. VERIFICAÇÃO
+    $sql_check = "SELECT id_regi FROM registro WHERE user_regi = ? OR email_regi = ?";
+    $stmt_check = $conn->prepare($sql_check);
+    $stmt_check->bind_param("ss", $user, $email);
+    $stmt_check->execute();
+    
+    // Pegamos o resultado e já liberamos o statement
+    $res_check = $stmt_check->get_result();
+    $existe = $res_check->num_rows;
+    
+    $stmt_check->close(); // ⬅️ IMPORTANTE: Fecha aqui para não dar "out of sync"
 
-    if ($user = $result->fetch_assoc()) {
-        if (password_verify($senha, $user['senha'])) {
+    if ($existe > 0) {
+        $erro = "Usuário ou E-mail já cadastrados!";
+    } else {
+        
+        $sql_ins = "INSERT INTO registro (nome_regi, user_regi, email_regi, senha_regi) VALUES (?, ?, ?, ?)";
+        $stmt_ins = $conn->prepare($sql_ins);
+        $stmt_ins->bind_param("ssss", $nome, $user, $email, $senhaHash);
 
-            $_SESSION['usuario'] = $user['nome'];
-            header("Location: painel.php");
+        if ($stmt_ins->execute()) {
+            $stmt_ins->close(); // Fecha também após usar
+            header("Location: login.php?cadastro=sucesso");
             exit;
         } else {
-            $erro = "Senha incorreta";
+            $erro = "Erro ao registrar: " . $conn->error;
         }
-    } else {
-        $erro = "Usuário não encontrado";
     }
 }
 ?>
@@ -33,9 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/login.css">
-    <title>Login</title>
+    <title>Cadastre-se</title>
 </head>
 
 <body data-on="false">
@@ -59,40 +71,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
 
-        <div class="login-form">
+<div class="login-form">
+    <h2>Bem Vindo!</h2>
 
-            <h2>Bem Vindo!</h2>
+    <?php if (isset($erro)): ?>
+        <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
+    <?php endif; ?>
 
-            <!-- 🔴 ERRO -->
-            <?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
-
-            <form method="POST">
-
-                <div class="form-group">
-                    <label>nome</label>
-                    <input type="text" name="nome" placeholder="Seu nome" required />
-                </div>
-
-                <div class="form-group">
-                    <label>nome de usuario</label>
-                    <input type="text" name="user" placeholder="Seu nome" required />
-                </div>
-
-                <div class="form-group">
-
-                    <label>email</label>
-                    <input type="text" name="email" placeholder="Seu nome" required />
-                </div>
-
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="senha" name="senha" placeholder="••••••••" required />
-                </div>
-
-                <button class="login-btn" type="submit">cadastrar</button>
-
-
+    <form method="POST" action=""> 
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" name="nome" placeholder="Seu nome completo" required />
         </div>
+
+        <div class="form-group">
+            <label>Usuário</label>
+            <input type="text" name="user" placeholder="Nome de usuário" required />
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="seu@email.com" required />
+        </div>
+
+        <div class="form-group">
+            <label>Senha</label>
+            <input type="password" name="senha" placeholder="••••••••" required />
+        </div>
+
+        <button class="login-btn" type="submit">Cadastrar</button>
+    </form> </div>
     </div>
 
     <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>

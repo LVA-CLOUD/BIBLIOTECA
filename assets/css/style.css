@@ -147,3 +147,32 @@ body {
     font-size: 14px;
     color: #6e4c24;
 }
+.filtro-flex {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filtro-flex input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filtro-flex select,
+.filtro-flex button {
+    min-width: 150px;
+}
+table {
+    width:100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding:10px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
