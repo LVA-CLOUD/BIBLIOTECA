@@ -1,4 +1,4 @@
-<?php
+ <?php
 $host = "athenas.mysql.dbaas.com.br";
 $user = "athenas";
 $pass = "Crocancia123!";

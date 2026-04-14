@@ -7,32 +7,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user  = $_POST['user'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+    
+    $nivel_padrao = 1; 
 
-    // senha sendo passada para o banco criptografada
+    // Senha criptografada
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // 1. VERIFICAÇÃO
+    // 1. VERIFICAÇÃO de duplicidade
     $sql_check = "SELECT id_regi FROM registro WHERE user_regi = ? OR email_regi = ?";
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("ss", $user, $email);
     $stmt_check->execute();
     
-    // Pegamos o resultado e já liberamos o statement
     $res_check = $stmt_check->get_result();
     $existe = $res_check->num_rows;
-    
-    $stmt_check->close(); // ⬅️ IMPORTANTE: Fecha aqui para não dar "out of sync"
+    $stmt_check->close();
 
     if ($existe > 0) {
         $erro = "Usuário ou E-mail já cadastrados!";
     } else {
+        // 2. INSERÇÃO (Agora incluindo a coluna de nível)
+        // Ajuste 'id_nivel' para o nome exato da coluna na sua tabela
+        $sql_ins = "INSERT INTO registro (nome_regi, user_regi, email_regi, senha_regi, id_nivel) VALUES (?, ?, ?, ?, ?)";
         
-        $sql_ins = "INSERT INTO registro (nome_regi, user_regi, email_regi, senha_regi) VALUES (?, ?, ?, ?)";
         $stmt_ins = $conn->prepare($sql_ins);
-        $stmt_ins->bind_param("ssss", $nome, $user, $email, $senhaHash);
+        
+        $stmt_ins->bind_param("ssssi", $nome, $user, $email, $senhaHash, $nivel_padrao);
 
         if ($stmt_ins->execute()) {
-            $stmt_ins->close(); // Fecha também após usar
+            $stmt_ins->close();
             header("Location: login.php?cadastro=sucesso");
             exit;
         } else {
@@ -40,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
+?>
 ?>
 
 <!DOCTYPE html>

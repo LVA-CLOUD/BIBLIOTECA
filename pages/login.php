@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../config/conexao.php");
 
@@ -7,29 +7,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $sql = "SELECT id_regi, senha_regi FROM registro WHERE email_regi = ?";
+    // 1. Alteramos a Query para buscar informações de ambas as tabelas usando JOIN
+    // Buscamos o id_nivel da tabela 'nivel' para saber o cargo
+    $sql = "SELECT r.id_regi, r.senha_regi, r.id_nivel 
+            FROM registro r
+            INNER JOIN nivel n ON r.id_nivel = n.id_nivel 
+            WHERE r.email_regi = ?";
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
-
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
 
         $user = $result->fetch_assoc();
 
-        // Verificação da senha, que está sendo registrada no banco criptografada, la na pagina registrar.php 
-        // "password_verify" serve para ver a criptografia da senha que esta sendo feita na pag registrar.php
         if (password_verify($senha, $user['senha_regi'])) {
-            echo "Login OK!";
-        } else {
+            $_SESSION['id_usuario'] = $user['id_regi'];
+            $_SESSION['id_nivel'] = $user['id_nivel'];
+
+            // O PHP apenas "fala" quem logou, ele não redireciona mais
+            if ($user['id_nivel'] == 2) {
+                echo "Login Funcionario";
+            } else {
+                echo "Login Comum";
+            }
+            exit; // Importante para não enviar o resto do HTML da página de login
+        } {
             echo "Senha incorreta!";
         }
-
     } else {
         echo "Usuário não encontrado!";
     }
-
     exit;
 }
 ?>

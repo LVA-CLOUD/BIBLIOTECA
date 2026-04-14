@@ -108,23 +108,23 @@ function Login() {
         },
         body: "email=" + encodeURIComponent(email) + "&senha=" + encodeURIComponent(senha)
     })
-    .then(response => response.text())
-    .then(data => {
-        const resposta = data.trim();
+        .then(response => response.text())
+        .then(data => {
+            const resposta = data.trim();
 
-        if (resposta === "Login Funcionario") {
-            // Redireciona para a pasta principal/cadastro
-            window.location.href = "index.php"; 
-        } else if (resposta === "Login Comum") {
-            // Redireciona para a pasta de início
-            window.location.href = "inicio/index.php";
-        } else {
-            // Exibe o erro vindo do PHP (Senha incorreta, etc)
-            alert(resposta);
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        alert("Erro na conexão com o servidor.");
-    });
+            if (resposta === "Login funcionario") {
+                // Redireciona para a pasta principal/cadastro
+                window.location.href = "../emprestar.php";
+            } else if (resposta === "Login Comum") {
+                // Redireciona para a pasta de início
+                window.location.href = "inicio.php";
+            } else {
+                // Exibe o erro vindo do PHP (Senha incorreta, etc)
+                alert(resposta);
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert("Erro na conexão com o servidor.");
+        });
 }
