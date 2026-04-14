@@ -1,4 +1,5 @@
 <?php
+include("../config/verifica_funcionario.php");
 include_once("../config/conexao.php");
 
 

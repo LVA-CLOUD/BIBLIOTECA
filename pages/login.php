@@ -7,15 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // 1. Alteramos a Query para buscar informações de ambas as tabelas usando JOIN
-    // Buscamos o id_nivel da tabela 'nivel' para saber o cargo
     $sql = "SELECT r.id_regi, r.senha_regi, r.id_nivel 
             FROM registro r
             INNER JOIN nivel n ON r.id_nivel = n.id_nivel 
-            WHERE r.email_regi = ?";
+            WHERE r.email_regi = ? OR r.user_regi = ? LIMIT 1";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
+    $stmt->bind_param("ss", $email, $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -27,16 +25,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id_usuario'] = $user['id_regi'];
             $_SESSION['id_nivel'] = $user['id_nivel'];
 
-            // O PHP apenas "fala" quem logou, ele não redireciona mais
+            // para informar o js quem é quem e ser direcionado
             if ($user['id_nivel'] == 2) {
                 echo "Login Funcionario";
             } else {
                 echo "Login Comum";
             }
-            exit; // Importante para não enviar o resto do HTML da página de login
-        } {
+            exit;
+
+        } else{
             echo "Senha incorreta!";
         }
+
     } else {
         echo "Usuário não encontrado!";
     }

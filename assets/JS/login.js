@@ -84,13 +84,11 @@ function typeWriter(text, element, speed) {
 
     typing();
 }
+gsap.registerPlugin(Draggable);
+
 
 
 // Botao Login
-
-gsap.registerPlugin(Draggable);
-
-// ... (Mantenha seu código da lâmpada e GSAP que já funciona aqui) ...
 
 function Login() {
     let email = document.getElementById("email").value;
@@ -110,11 +108,12 @@ function Login() {
     })
         .then(response => response.text())
         .then(data => {
+
             const resposta = data.trim();
 
-            if (resposta === "Login funcionario") {
+            if (resposta === "Login Funcionario") {
                 // Redireciona para a pasta principal/cadastro
-                window.location.href = "../emprestar.php";
+                window.location.href = "cadastro.php";
             } else if (resposta === "Login Comum") {
                 // Redireciona para a pasta de início
                 window.location.href = "inicio.php";
