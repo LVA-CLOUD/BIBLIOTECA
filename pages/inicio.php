@@ -36,7 +36,7 @@
         <section class="slider">
 
             <div class="slider-content ativo">
-                <img class="AlgoRelacionado" src="../assets/img/LIVROS/livroVidasSecas2.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/livroVidasSecas2.png" alt="Vidas Secas">
 
                 <div class="conteudo">
                     <h1>Vidas Secas</h1>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="slider-content">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/horaEstrela2.png" alt="Hora Estrela">
 
                 <div class="conteudo">
                     <h1>Hora da Estrela</h1>
@@ -68,16 +68,16 @@
             </div>
 
             <div class="slider-content">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/picapauAmarelo2.png" alt="O PicaPau Amarelo">
 
                 <div class="conteudo">
                     <h1>Pica-Pau Amarelo</h1>
-                    <p>"O Picapau Amarelo" é uma obra-prima da literatura brasileira que encanta 
-                        gerações. Com sua escrita envolvente e personagens carismáticos, Monteiro 
-                        Lobato nos leva a um universo mágico e cheio de possibilidades. Essa história 
-                        cativante desperta a imaginação, ensina importantes lições e proporciona 
-                        momentos de pura diversão. Não perca a chance de se apaixonar por esse 
-                        clássico da literatura infantil e embarcar em uma aventura inesquecível 
+                    <p>"O Picapau Amarelo" é uma obra-prima da literatura brasileira que encanta
+                        gerações. Com sua escrita envolvente e personagens carismáticos, Monteiro
+                        Lobato nos leva a um universo mágico e cheio de possibilidades. Essa história
+                        cativante desperta a imaginação, ensina importantes lições e proporciona
+                        momentos de pura diversão. Não perca a chance de se apaixonar por esse
+                        clássico da literatura infantil e embarcar em uma aventura inesquecível
                         no Sítio do Picapau Amarelo!</p>
                     <button>Adquira Agora</button>
                 </div>
@@ -89,55 +89,48 @@
             </div>
 
             <div class="slider-content">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/hobbit2.png" alt="O Hobbit">
 
                 <div class="conteudo">
                     <h1>O Hobbit</h1>
-                    <p>O Hobbit, escrito por J.R.R. Tolkien, é uma obra clássica da literatura fantástica que segue a história de Bilbo Bolseiro, um hobbit pacato que vive
-                        uma vida tranquila no Condado. Quando Bilbo é convidado pelo mago Gandalf para se juntar a um grupo de anões em uma jornada para recuperar o
-                        tesouro roubado pelos dragões Smaug, ele inicialmente relutante aceita o convite. Ao longo da jornada, Bilbo e seus companheiros enfrentam diversos desafios, incluindo trolls, goblins, elfos e aranhas gigantes,
-                        e Bilbo se torna um personagem mais corajoso e capaz. A história culmina na Batalha dos Cinco Exércitos, onde Bilbo desempenha um papel crucial na derrota do dragão Smaug. No final, Bilbo retorna ao Condado com riquezas
-                        e experiências, mas percebe que sua casa não mudou enquanto ele estava ausente.</p>
+                    <p>Bilbo Bolseiro, um hobbit tranquilo, é levado pelo mago Gandalf a viver uma aventura com anões para recuperar um tesouro guardado pelo dragão Smaug. Ao longo da jornada, ele enfrenta perigos e se torna mais corajoso e esperto, voltando para casa transformado.</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
                     <img src="../assets/img/LIVROS/hobbit.png" alt="O Hobbit">
-                    <img src="./img/lata.png" alt="Imagem5">
+                    <img src="../assets/img/LIVROS/pedraFilosofal.png" alt="Harry Potter e a Pedra Filosofal">
                 </div>
             </div>
 
             <div class="slider-content">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/pedraFilosofal2.png" alt="Harry Potter e a Pedra Filosofal">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro5</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <h1>Pedra Filosofal</h1>
+                    <p>Harry Potter é um garoto órfão que descobre, ao completar 11 anos, que é um bruxo. Ele vai estudar na escola de magia Hogwarts, onde faz amigos como Ron Weasley e Hermione Granger.
+                        Durante o ano, Harry descobre a existência da Pedra Filosofal, um objeto mágico muito poderoso, e suspeita que alguém está tentando roubá-la. Com a ajuda dos amigos, ele enfrenta desafios para protegê-la e acaba confrontando Lord Voldemort.</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem5">
-                    <img src="./img/lata.png" alt="Imagem6">
+                    <img src="../assets/img/LIVROS/pedraFilosofal.png" alt="Harry Potter e a Pedra Filosofal">
+                    <img src="../assets/img/LIVROS/guerraTronos.png" alt="A guerra dos Tronos">
                 </div>
             </div>
 
             <div class="slider-content">
-                <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
+                <img class="AlgoRelacionado" src="../assets/img/LIVROS/guerraTronos2.png" alt="A guerra dos Tronos">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro6</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <h1>A Guerra dos Tronos</h1>
+                    <p>Neste livro, somos apresentados a diversos personagens que vão nos guiar pela trama. Entre eles, destacam-se os membros da família Stark, que governam o norte do reino. Eddard Stark, o patriarca da família, é chamado pelo rei Robert Baratheon para ser sua Mão, ou seja, seu braço direito no governo. Isso coloca Stark em uma posição de poder, mas também de perigo, pois ele começa a descobrir segredos que podem desestabilizar o reino.</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem6">
-                    <img src="./img/lata.png" alt="Imagem1">
+                    <img src="../assets/img/LIVROS/guerraTronos.png" alt="A guerra dos Tronos">
+                    <img src="../assets/img/LIVROS/livroVidasSecas.png" alt="Vidas Secas">
                 </div>
             </div>
 

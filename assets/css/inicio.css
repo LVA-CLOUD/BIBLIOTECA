@@ -89,15 +89,15 @@ img {
 }
 
 .slider-content:nth-child(4) {
-    background: linear-gradient(100deg, #666968, #15687b);
+    background: linear-gradient(100deg, #15687b, #666968);
 }
 
 .slider-content:nth-child(5) {
-    background: linear-gradient(100deg, #2AC4FF 2.57%, #0D88BB 95.91%);
+    background: linear-gradient(100deg, #9e030a, #4c0303);
 }
 
 .slider-content:nth-child(6) {
-    background: linear-gradient(100deg, #FF8917, #D06000);
+    background: linear-gradient(100deg, #009ab8, #173840);
 }
 
 .slider-content.ativo {
