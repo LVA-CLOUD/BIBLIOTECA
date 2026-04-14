@@ -46,8 +46,8 @@
                 </div>
 
                 <div class="livros">
-                    <img src="../assets/img/LIVROS/livroVidasSecas.png" alt="Imagem1">
-                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/livroVidasSecas.png" alt="Vidas Secas">
+                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Hora Estrela">
                 </div>
             </div>
 
@@ -62,8 +62,8 @@
                 </div>
 
                 <div class="livros">
-                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Imagem2">
-                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/horaEstrela.png" alt="Hora Estrela">
+                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Pica-pau Amarelo">
                 </div>
             </div>
 
@@ -72,15 +72,19 @@
 
                 <div class="conteudo">
                     <h1>Pica-Pau Amarelo</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <p>"O Picapau Amarelo" é uma obra-prima da literatura brasileira que encanta 
+                        gerações. Com sua escrita envolvente e personagens carismáticos, Monteiro 
+                        Lobato nos leva a um universo mágico e cheio de possibilidades. Essa história 
+                        cativante desperta a imaginação, ensina importantes lições e proporciona 
+                        momentos de pura diversão. Não perca a chance de se apaixonar por esse 
+                        clássico da literatura infantil e embarcar em uma aventura inesquecível 
+                        no Sítio do Picapau Amarelo!</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
-                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Imagem2">
-                    <img src="../assets/img/LIVROS/hobbit.png" alt="Imagem2">
+                    <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Pica-pau Amarelo">
+                    <img src="../assets/img/LIVROS/hobbit.png" alt="O Hobbit">
                 </div>
             </div>
 
@@ -88,15 +92,17 @@
                 <img class="AlgoRelacionado" src="./img/circulo.png" alt="Algo Relacionado a Imagem">
 
                 <div class="conteudo">
-                    <h1>Titulo Livro4</h1>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia doloremque facere ad totam illo ut
-                        aspernatur doloribus, non officia harum molestiae debitis perferendis sit asperiores amet in
-                        molestias eaque fugit?</p>
+                    <h1>O Hobbit</h1>
+                    <p>O Hobbit, escrito por J.R.R. Tolkien, é uma obra clássica da literatura fantástica que segue a história de Bilbo Bolseiro, um hobbit pacato que vive
+                        uma vida tranquila no Condado. Quando Bilbo é convidado pelo mago Gandalf para se juntar a um grupo de anões em uma jornada para recuperar o
+                        tesouro roubado pelos dragões Smaug, ele inicialmente relutante aceita o convite. Ao longo da jornada, Bilbo e seus companheiros enfrentam diversos desafios, incluindo trolls, goblins, elfos e aranhas gigantes,
+                        e Bilbo se torna um personagem mais corajoso e capaz. A história culmina na Batalha dos Cinco Exércitos, onde Bilbo desempenha um papel crucial na derrota do dragão Smaug. No final, Bilbo retorna ao Condado com riquezas
+                        e experiências, mas percebe que sua casa não mudou enquanto ele estava ausente.</p>
                     <button>Adquira Agora</button>
                 </div>
 
                 <div class="livros">
-                    <img src="./img/lata.png" alt="Imagem4">
+                    <img src="../assets/img/LIVROS/hobbit.png" alt="O Hobbit">
                     <img src="./img/lata.png" alt="Imagem5">
                 </div>
             </div>
