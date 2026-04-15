@@ -9,7 +9,6 @@ $stmt = $conn->prepare("INSERT INTO livros (titulo, ano_publicacao, id_autor) VA
 $stmt->bind_param("ssi", $titulo, $ano, $id_autor);
 $stmt->execute();
 
-$conn->query($sql);
-
-header("Location: cadastro.php");
+// para se manter na pagina de cadastro
+header("Location: ../pages/cadastro.php");
 ?>

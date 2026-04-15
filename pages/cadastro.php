@@ -49,7 +49,7 @@ $autores = $conn->query($sqlAutores);
             <section class="card">
                 <h2>Novo Autor</h2>
 
-                <form method="POST" action="salvar_autor.php" class="form">
+                <form method="POST" action="../config/salvar_autor.php" class="form">
                     <input type="text" name="nome" placeholder="Nome do Autor" required>
                     <input type="text" name="nacionalidade" placeholder="Nacionalidade" required>
 
@@ -60,7 +60,7 @@ $autores = $conn->query($sqlAutores);
             <section class="card">
                 <h2>Novo Livro</h2>
 
-                <form method="POST" action="salvar_livro.php" class="form">
+                <form method="POST" action="../config/salvar_livro.php" class="form">
                     <input type="text" name="titulo" placeholder="Título do Livro" required>
                     <input type="number" name="ano" placeholder="Ano de Publicação" required>
 
