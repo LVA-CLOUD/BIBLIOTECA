@@ -1,3 +1,10 @@
+<?php
+include("../config/verifica_login.php");
+include("../config/conexao.php");
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,6 +15,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/inicio.css">
+    <link rel="stylesheet" href="../assets/css/nav.css">
+
     <title>Atenas</title>
 </head>
 
@@ -20,14 +29,42 @@
                 <li>Livros</li>
                 <li>Agendamento</li>
                 <li>Contato</li>
+                <li><i class="bi bi-search"></i></li>
+                
             </ul>
         </nav>
 
         <img src="../assets/img/LOGOS/logo1.png" alt="Logo">
 
-        <div class="icons">
-            <i class="bi bi-search"></i>
-            <a href="login.php"><i class="bi bi-person-fill"></i></a>
+
+        <!-- Offcanvas -->
+         <div class="offoff">
+             <button class="btn-open btn-icon" onclick="toggleOffcanvas()"><i class="bi bi-person-fill"></i></button>
+     
+             <div id="offcanvasBackdrop" class="offcanvas-backdrop" onclick="triggerStaticAnimation()"></div>
+     
+             <div id="myOffcanvas" class="offcanvas-container">
+                 <div class="offcanvas-header">
+                     <h3>Menu Lateral</h3>
+                     <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
+                 </div>
+                 <div class="offcanvas-body">
+                     <p>Este menu não fecha se você clicar no fundo escuro!</p>
+                     <ul>
+                 </div>
+                 <a href="../meus_emprestimos.php">meus emprestimos</a>
+                 <a href="#">Services</a>
+                 <a href="#">Clients</a>
+                 <a href="#">Contact</a>
+             </div>
+             </ul>
+         </div>
+
+        </div>
+        </div>
+
+
+
 
         </div>
     </header>
@@ -143,5 +180,6 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/SplitText.min.js"></script>
     <!-- JS -->
     <script src="../assets/js/inicio.js"></script>
+    <script src="../assets/js/nav.js"></script>
 
 </body>

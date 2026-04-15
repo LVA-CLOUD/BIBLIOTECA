@@ -1,0 +1,139 @@
+:root {
+  --offcanvas-width: 300px;
+  --transition-speed: 0.3s;
+  --backdrop-color: rgba(0, 0, 0, 0.5);
+}
+
+.offoff{
+  display: flex;
+  flex-direction: row-reverse;
+  width: 362px;
+}
+
+/* Fundo escurecido (Backdrop) */
+.offcanvas-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--backdrop-color);
+  z-index: 1040;
+  
+  /* Substituímos display:none por visibility + opacity para permitir animação */
+  opacity: 0;
+  visibility: hidden; 
+  transition: opacity var(--transition-speed) ease, visibility var(--transition-speed);
+}
+
+/* Estado Ativo do Backdrop */
+.offcanvas-backdrop.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Botão de ícone (Ajustado para ser responsivo e clicável) */
+.btn-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.4vw; /* Removido 5vw para evitar ícones gigantes em telas grandes */
+  cursor: pointer;
+  opacity: 1;
+  padding: 5px;
+  transition: opacity 0.2s;
+}
+
+.btn-open{
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  opacity: 0.8;
+}
+
+/* Menu Lateral (Container) */
+.offcanvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--offcanvas-width);
+  max-width: 80%; /* Garante que não quebre em celulares muito pequenos */
+  height: 100%;
+  background: white;
+  z-index: 1050;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  
+  /* Escondido à esquerda */
+  transform: translateX(-100%); 
+  /* cubic-bezier dá um efeito mais premium de "slide" */
+  transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+  
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estado Ativo do Menu */
+.offcanvas-container.show {
+  transform: translateX(0);
+}
+
+/* Estilização Interna */
+.offcanvas-header {
+  padding: 1.2rem;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.offcanvas-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.offcanvas-body {
+  padding: 1.2rem;
+  flex-grow: 1;
+  overflow-y: auto; /* Permite scroll interno se o menu for muito longo */
+}
+
+.offcanvas-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.myOffcanvas a{
+    color: black !important;
+}
+
+.offcanvas-body li a {
+  display: block;
+  padding: 10px 0;
+  color: #333;
+  text-decoration: none;
+  border-bottom: 1px solid #f0f0f0;
+  transition: padding-left 0.2s;
+}off
+
+.offcanvas-body li a:hover {
+  padding-left: 10px;
+  color: #007bff;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.btn-close:hover {
+  color: #000;
+}

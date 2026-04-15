@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <form method="POST">
 
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="text" id="email" name="email" placeholder="Email" />
+                    <label>Email/Nome de Usuario</label>
+                    <input type="text" id="email" name="email" placeholder="Email/Nome de Usuario" />
                 </div>
 
                 <div class="form-group">

@@ -1,5 +1,5 @@
 <?php
-session_start();
+include("./config/verifica_funcionario.php");
 include_once("./config/conexao.php");
 
 $idAutor = isset($_GET['autor']) ? (int) $_GET['autor'] : null;

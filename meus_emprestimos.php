@@ -1,19 +1,21 @@
 <?php
-session_start();
+include_once("./config/verifica_login.php");
 include_once("./config/conexao.php");
 
-if (!isset($_SESSION['id_regi'])) {
-    die("Faça login");
-}
 
-$id_regi = $_SESSION['id_regi'];
 
+$id_regi = $_SESSION['id_usuario'];
+
+// 3. Uso de Prepared Statements para evitar SQL Injection
 $sql = "SELECT livros.titulo, livros.id_livro, emprestimos.data_emprestimo, emprestimos.data_devolucao
-FROM emprestimos
-INNER JOIN livros ON livros.id_livro = emprestimos.id_livro
-WHERE emprestimos.id_regi = $id_regi";
+        FROM emprestimos
+        INNER JOIN livros ON livros.id_livro = emprestimos.id_livro
+        WHERE emprestimos.id_regi = ?";
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_regi); // "i" significa que o valor é um integer
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
