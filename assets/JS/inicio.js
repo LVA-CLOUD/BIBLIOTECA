@@ -6,13 +6,13 @@ const slides = document.querySelectorAll(".slider-content");
 let timer = 0;
 let click = true;
 
-function titulo(){
+function titulo() {
 
     const split = SplitText.create(".slider-content.ativo h1", {
         type: "chars",
         mask: "chars"
     });
-    
+
     gsap.from(split.chars, {
         opacity: 0,
         duration: .4,
@@ -22,36 +22,35 @@ function titulo(){
     });
 }
 
-livroMenor.forEach((livroMenor)=> {
+livroMenor.forEach((livroMenor) => {
 
-    livroMenor.onclick = ()=> {
-        
-        if(click){
+    livroMenor.onclick = () => {
+
+        if (click) {
             click = false
 
             const slideAtivo = document.querySelector(".slider-content.ativo");
-    
+
             slideAtivo.classList.remove("ativo");
-            
-            if(timer == 5){
+
+            if (timer == 5) {
                 timer = 0;
             } else {
                 timer++;
             }
-    
-            
+
+
             console.log(timer);
-    
+
             slides[timer].classList.add("ativo");
-    
+
             titulo();
 
             // delay do click
-            setTimeout(()=>{
+            setTimeout(() => {
                 click = true
             }, 1000)
         }
 
     }
 });
-

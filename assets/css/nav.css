@@ -1,10 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   --offcanvas-width: 300px;
   --transition-speed: 0.3s;
   --backdrop-color: rgba(0, 0, 0, 0.5);
+
+  --font-primary: "Poppins", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
 }
 
-.offoff{
+.offoff {
   display: flex;
   flex-direction: row-reverse;
   width: 362px;
@@ -19,10 +24,10 @@
   height: 100vh;
   background: var(--backdrop-color);
   z-index: 1040;
-  
+
   /* Substituímos display:none por visibility + opacity para permitir animação */
   opacity: 0;
-  visibility: hidden; 
+  visibility: hidden;
   transition: opacity var(--transition-speed) ease, visibility var(--transition-speed);
 }
 
@@ -37,14 +42,15 @@
   background: none;
   border: none;
   color: white;
-  font-size: 2.4vw; /* Removido 5vw para evitar ícones gigantes em telas grandes */
+  font-size: 2.4vw;
+  /* Removido 5vw para evitar ícones gigantes em telas grandes */
   cursor: pointer;
   opacity: 1;
   padding: 5px;
   transition: opacity 0.2s;
 }
 
-.btn-open{
+.btn-open {
   cursor: pointer;
 }
 
@@ -58,17 +64,18 @@
   top: 0;
   left: 0;
   width: var(--offcanvas-width);
-  max-width: 80%; /* Garante que não quebre em celulares muito pequenos */
+  max-width: 80%;
+  /* Garante que não quebre em celulares muito pequenos */
   height: 100%;
   background: white;
   z-index: 1050;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-  
+
   /* Escondido à esquerda */
-  transform: translateX(-100%); 
+  transform: translateX(-100%);
   /* cubic-bezier dá um efeito mais premium de "slide" */
   transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   display: flex;
   flex-direction: column;
 }
@@ -95,31 +102,24 @@
 }
 
 .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+
   padding: 1.2rem;
   flex-grow: 1;
-  overflow-y: auto; /* Permite scroll interno se o menu for muito longo */
+
+  overflow-y: auto;
 }
 
-.offcanvas-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.myOffcanvas a{
-    color: black !important;
-}
-
-.offcanvas-body li a {
-  display: block;
-  padding: 10px 0;
-  color: #333;
+.offcanvas-body a {
   text-decoration: none;
+  color: #333;
+  padding: 10px 0;
   border-bottom: 1px solid #f0f0f0;
   transition: padding-left 0.2s;
-}off
+}
 
-.offcanvas-body li a:hover {
+.offcanvas-body a:hover {
   padding-left: 10px;
   color: #007bff;
 }
@@ -136,4 +136,32 @@
 
 .btn-close:hover {
   color: #000;
+}
+
+.logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5%;
+}
+
+.btn-logout-sidebar {
+  width: 60%;
+  padding: 15px;
+
+  border: none;
+  border-radius: 15px;
+
+  background: #eb0b0b;
+  color: rgb(255, 255, 255);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.btn-logout-sidebar:hover {
+  background: #e60000;
 }

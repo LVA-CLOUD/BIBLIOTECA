@@ -4,8 +4,9 @@ include_once("conexao.php");
 $nome = $_POST['nome'];
 $nacionalidade = $_POST['nacionalidade'];
 
-$sql = "INSERT INTO autores (nome, nacionalidade)
-        VALUES ('$nome', '$nacionalidade')";
+$stmt = $conn->prepare("INSERT INTO autores (nome, nacionalidade) VALUES (?, ?)");
+$stmt->bind_param("ssi", $titulo, $ano, $id_autor);
+$stmt->execute();
 
 $conn->query($sql);
 

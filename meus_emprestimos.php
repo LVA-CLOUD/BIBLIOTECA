@@ -23,6 +23,8 @@ $result = $stmt->get_result();
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Meus Empréstimos</title>
 
     <link rel="stylesheet" href="./assets/css/style.css">
@@ -30,65 +32,66 @@ $result = $stmt->get_result();
 
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- 🏛️ SIDEBAR -->
-    <aside class="sidebar">
-        <h2>Biblioteca Atenas</h2>
-        <nav>
-            <a href="./index.php">📚 Acervo</a>
-            <a href="./pages/cadastro.php">➕ Cadastro</a>
-            <a href="./meus_emprestimos.php">📋 Meus Empréstimos</a>
-        </nav>
-    </aside>
+        <!-- 🏛️ SIDEBAR -->
+        <aside class="sidebar">
+            <h2>Biblioteca Atenas</h2>
+            <nav>
+                <a href="./index.php">📚 Acervo</a>
+                <a href="./pages/cadastro.php">➕ Cadastro</a>
+                <a href="./meus_emprestimos.php">📋 Meus Empréstimos</a>
+            </nav>
+        </aside>
 
-    <!-- 📖 CONTEÚDO -->
-    <main class="content">
+        <!-- 📖 CONTEÚDO -->
+        <main class="content">
 
-        <header class="header">
-            <h1>Meus Empréstimos</h1>
-        </header>
+            <header class="header">
+                <h1>Meus Empréstimos</h1>
+            </header>
 
-        <section class="card">
+            <section class="card">
 
-            <table class="tabela">
-                <tr>
-                    <th>Livro</th>
-                    <th>Empréstimo</th>
-                    <th>Devolução</th>
-                    <th>Status</th>
-                    <th>Ação</th>
-                </tr>
+                <table class="tabela">
+                    <tr>
+                        <th>Livro</th>
+                        <th>Empréstimo</th>
+                        <th>Devolução</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
 
-                <?php while($row = $result->fetch_assoc()): 
-                    $atrasado = strtotime($row['data_devolucao']) < time();
-                ?>
+                    <?php while ($row = $result->fetch_assoc()):
+                        $atrasado = strtotime($row['data_devolucao']) < time();
+                    ?>
 
-                <tr>
-                    <td><?= $row['titulo'] ?></td>
-                    <td><?= $row['data_emprestimo'] ?></td>
-                    <td><?= $row['data_devolucao'] ?></td>
+                        <tr>
+                            <td><?= $row['titulo'] ?></td>
+                            <td><?= $row['data_emprestimo'] ?></td>
+                            <td><?= $row['data_devolucao'] ?></td>
 
-                    <td>
-                        <?= $atrasado ? "<span class='status atraso'>🔴 Atrasado</span>" : "<span class='status ok'>🟢 Em dia</span>" ?>
-                    </td>
+                            <td>
+                                <?= $atrasado ? "<span class='status atraso'>🔴 Atrasado</span>" : "<span class='status ok'>🟢 Em dia</span>" ?>
+                            </td>
 
-                    <td>
-                        <a class="btn-devolver" href="./config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
-                            Devolver
-                        </a>
-                    </td>
-                </tr>
+                            <td>
+                                <a class="btn-devolver" href="./config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
+                                    Devolver
+                                </a>
+                            </td>
+                        </tr>
 
-                <?php endwhile; ?>
+                    <?php endwhile; ?>
 
-            </table>
+                </table>
 
-        </section>
+            </section>
 
-    </main>
+        </main>
 
-</div>
+    </div>
 
 </body>
+
 </html>

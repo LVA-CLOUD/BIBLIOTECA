@@ -32,11 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Login Comum";
             }
             exit;
-
-        } else{
+        } else {
             echo "Senha incorreta!";
         }
-
     } else {
         echo "Usuário não encontrado!";
     }
@@ -46,12 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../assets/css/login.css">
     <title>Login</title>
 </head>
@@ -88,7 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <h2>Bem Vindo!</h2>
 
-            <form method="POST">
+            <form method="POST" onsubmit="event.preventDefault(); Login();">
 
                 <div class="form-group">
                     <label>Email/Nome de Usuario</label>
@@ -100,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="senha" name="senha" placeholder="••••••••" />
                 </div>
 
-                <button type="button" onclick="Login()" class="login-btn">Login</button>
+                <button type="submit" onclick="Login()" class="login-btn">Login</button>
 
                 <div class="ors">
                     <div class="linha"></div>
@@ -108,7 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="linha"></div>
                 </div>
 
-                <button class="login-btn"><a href="registrar.php">Registra-se</a></button>
+
+                <a href="registrar.php" class="login-bnt">Registra-se</a>
             </form>
 
         </div>

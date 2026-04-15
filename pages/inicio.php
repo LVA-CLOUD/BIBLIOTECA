@@ -4,7 +4,6 @@ include("../config/conexao.php");
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,7 +29,7 @@ include("../config/conexao.php");
                 <li>Agendamento</li>
                 <li>Contato</li>
                 <li><i class="bi bi-search"></i></li>
-                
+
             </ul>
         </nav>
 
@@ -38,35 +37,34 @@ include("../config/conexao.php");
 
 
         <!-- Offcanvas -->
-         <div class="offoff">
-             <button class="btn-open btn-icon" onclick="toggleOffcanvas()"><i class="bi bi-person-fill"></i></button>
-     
-             <div id="offcanvasBackdrop" class="offcanvas-backdrop" onclick="triggerStaticAnimation()"></div>
-     
-             <div id="myOffcanvas" class="offcanvas-container">
-                 <div class="offcanvas-header">
-                     <h3>Menu Lateral</h3>
-                     <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
-                 </div>
-                 <div class="offcanvas-body">
-                     <p>Este menu não fecha se você clicar no fundo escuro!</p>
-                     <ul>
-                 </div>
-                 <a href="../meus_emprestimos.php">meus emprestimos</a>
-                 <a href="#">Services</a>
-                 <a href="#">Clients</a>
-                 <a href="#">Contact</a>
-             </div>
-             </ul>
-         </div>
+        <div class="offoff">
 
+            <button class="btn-open btn-icon" onclick="toggleOffcanvas()"><i class="bi bi-person-fill"></i></button>
+
+            <div id="offcanvasBackdrop" class="offcanvas-backdrop" onclick="triggerStaticAnimation()"></div>
+
+            <div id="myOffcanvas" class="offcanvas-container">
+
+                <div class="offcanvas-header">
+                    <h3>Menu Lateral</h3>
+                    <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <a href="../meus_emprestimos.php">meus emprestimos</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="logout">
+                    <button onclick="fazerLogout()" class="btn-logout-sidebar">Sair</button>
+                </div>
+            </div>
+            </ul>
         </div>
-        </div>
 
 
-
-
-        </div>
     </header>
 
     <main>
@@ -182,4 +180,6 @@ include("../config/conexao.php");
     <script src="../assets/js/inicio.js"></script>
     <script src="../assets/js/nav.js"></script>
 
+
+    <script>console.log("JS carregado");</script>
 </body>

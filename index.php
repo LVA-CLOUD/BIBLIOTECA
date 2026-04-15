@@ -2,49 +2,68 @@
 include("./config/verifica_funcionario.php");
 include_once("./config/conexao.php");
 
-$idAutor = isset($_GET['autor']) ? (int) $_GET['autor'] : null;
-$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
-$pesquisa = isset($_GET['pesquisa']) ? $conn->real_escape_string($_GET['pesquisa']) : null;
+$idAutor = filter_input(INPUT_GET, 'autor', FILTER_VALIDATE_INT);
+$categoria = $_GET['categoria'] ?? null;
+$pesquisa = $_GET['pesquisa'] ?? null;
 
-// 🔹 AUTORES
-$sqlAutores = "SELECT * FROM autores ORDER BY nome";
+//BUSCA DE AUTORES
+$sqlAutores = "SELECT id_autor, nome FROM autores ORDER BY nome";
 $autores = $conn->query($sqlAutores);
 
-// 🔹 LIVROS (COM BLOQUEIO DE EMPRÉSTIMO)
-$sqlLivros = "SELECT livros.id_livro, livros.titulo, livros.ano_publicacao, livros.categoria, autores.nome,
-              emprestimos.id_livro AS emprestado, emprestimos.data_devolucao
-              FROM livros
-              INNER JOIN autores ON livros.id_autor = autores.id_autor
-              LEFT JOIN emprestimos ON livros.id_livro = emprestimos.id_livro
-              AND emprestimos.data_devolucao >= CURDATE()";
+//BUSCA DE LIVROS
+$sqlLivros = "SELECT l.id_livro, l.titulo, l.ano_publicacao, l.categoria, a.nome as nome_autor,
+                     e.id_livro AS emprestado, e.data_devolucao
+              FROM livros l
+              INNER JOIN autores a ON l.id_autor = a.id_autor
+              LEFT JOIN emprestimos e ON l.id_livro = e.id_livro 
+              AND e.data_devolucao >= CURDATE()";
 
-// filtros
 $condicoes = [];
+$params = [];
+$tipos = "";
 
 if ($idAutor) {
-    $condicoes[] = "autores.id_autor = $idAutor";
+    $condicoes[] = "a.id_autor = ?";
+    $params[] = $idAutor;
+    $tipos .= "i";
 }
 
 if (!empty($categoria)) {
-    $condicoes[] = "livros.categoria = '$categoria'";
+    $condicoes[] = "l.categoria = ?";
+    $params[] = $categoria;
+    $tipos .= "s";
 }
 
 if (!empty($pesquisa)) {
-    $condicoes[] = "(livros.titulo LIKE '%$pesquisa%' OR autores.nome LIKE '%$pesquisa%')";
+    $condicoes[] = "(l.titulo LIKE ? OR a.nome LIKE ?)";
+    $termo = "%$pesquisa%";
+    $params[] = $termo;
+    $params[] = $termo;
+    $tipos .= "ss";
 }
 
 if (count($condicoes) > 0) {
     $sqlLivros .= " WHERE " . implode(" AND ", $condicoes);
 }
 
-$result = $conn->query($sqlLivros);
+// Preparar e executar a busca de livros
+$stmt = $conn->prepare($sqlLivros);
+
+if (count($params) > 0) {
+    $stmt->bind_param($tipos, ...$params);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Biblioteca Imperial</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/modal.css">
@@ -118,7 +137,7 @@ $result = $conn->query($sqlLivros);
 
                             <h3><?= $livro['titulo'] ?></h3>
                             <p><?= $livro['ano_publicacao'] ?></p>
-                            <span><?= $livro['nome'] ?></span>
+                            <span><?= $livro['nome_autor'] ?></span>
 
                             <?php if ($livro['emprestado']): ?>
                                 <p class="indisponivel">Indisponível até <?= $livro['data_devolucao'] ?></p>

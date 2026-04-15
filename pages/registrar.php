@@ -6,8 +6,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user  = $_POST['user'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    
-    $nivel_padrao = 1; 
+
+    $nivel_padrao = 1;
 
     // Senha criptografada
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("ss", $user, $email);
     $stmt_check->execute();
-    
+
     $res_check = $stmt_check->get_result();
     $existe = $res_check->num_rows;
     $stmt_check->close();
@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 2. INSERÇÃO (Agora incluindo a coluna de nível)
         // Ajuste 'id_nivel' para o nome exato da coluna na sua tabela
         $sql_ins = "INSERT INTO registro (nome_regi, user_regi, email_regi, senha_regi, id_nivel) VALUES (?, ?, ?, ?, ?)";
-        
+
         $stmt_ins = $conn->prepare($sql_ins);
-        
+
         $stmt_ins->bind_param("ssssi", $nome, $user, $email, $senhaHash, $nivel_padrao);
 
         if ($stmt_ins->execute()) {
@@ -43,13 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../assets/css/login.css">
     <title>Cadastre-se</title>
 </head>
@@ -75,36 +76,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
 
-<div class="login-form">
-    <h2>Bem Vindo!</h2>
+        <div class="login-form">
+            <h2>Bem Vindo!</h2>
 
-    <?php if (isset($erro)): ?>
-        <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
-    <?php endif; ?>
+            <?php if (isset($erro)): ?>
+                <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
+            <?php endif; ?>
 
-    <form method="POST" action=""> 
-        <div class="form-group">
-            <label>Nome</label>
-            <input type="text" name="nome" placeholder="Seu nome completo" required />
+            <form method="POST" action="">
+                <div class="form-group">
+                    <label>Nome</label>
+                    <input type="text" name="nome" placeholder="Seu nome completo" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Usuário</label>
+                    <input type="text" name="user" placeholder="Nome de usuário" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="seu@email.com" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" placeholder="••••••••" required />
+                </div>
+
+                <button class="login-btn" type="submit">Cadastrar</button>
+            </form>
         </div>
-
-        <div class="form-group">
-            <label>Usuário</label>
-            <input type="text" name="user" placeholder="Nome de usuário" required />
-        </div>
-
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="seu@email.com" required />
-        </div>
-
-        <div class="form-group">
-            <label>Senha</label>
-            <input type="password" name="senha" placeholder="••••••••" required />
-        </div>
-
-        <button class="login-btn" type="submit">Cadastrar</button>
-    </form> </div>
     </div>
 
     <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>

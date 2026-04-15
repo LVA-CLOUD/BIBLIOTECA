@@ -176,43 +176,49 @@ body::before {
 .login-btn {
     width: 100%;
     padding: 15px;
+
     background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #aa771c);
-    ;
     border: none;
     border-radius: 15px;
+
     font-weight: 600;
     color: #121417;
+    font-size: 1rem;
+
     cursor: pointer;
     transition: 0.3s;
     margin-top: 10px;
-    font-size: 1rem;
 }
+
 
 .login-btn:hover {
     transform: scale(1.02);
     background: var(--lamp-shade);
 }
 
-.registro-btn {
+.register-btn {
     width: 100%;
     padding: 15px;
+
     background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fcf6ba, #aa771c);
     border: none;
     border-radius: 15px;
+
     font-weight: 600;
     color: #121417;
+    font-size: 1rem;
+
     cursor: pointer;
     transition: 0.3s;
     margin-top: 10px;
-    font-size: 1rem;
 }
 
-.login-form a {
+.login-form a:not(.login-btn) {
     color: white;
     text-decoration: none;
 }
 
-.registro-btn:hover {
+.register-btn:hover {
     transform: scale(1.02);
     background: var(--lamp-shade);
 }
@@ -221,6 +227,7 @@ body::before {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: white;
 }
 
 .linha {
