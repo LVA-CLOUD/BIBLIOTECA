@@ -1,6 +1,21 @@
 <?php
 include("../config/verifica_login.php");
 include("../config/conexao.php");
+
+// Pegando o ID que está salvo na sessão
+$id_logado = $_SESSION['id_usuario'];
+
+// SELECT para buscar os dados desse ID específico
+$sql_user = "SELECT user_regi FROM registro WHERE id_regi = ?";
+$stmt = $conn->prepare($sql_user);
+$stmt->bind_param("i", $id_logado);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$dados_usuario = $resultado->fetch_assoc();
+
+// Para guardar o nome em uma variavel
+$nome_exibicao = $dados_usuario['user_regi'];
+
 ?>
 
 
@@ -46,7 +61,9 @@ include("../config/conexao.php");
             <div id="myOffcanvas" class="offcanvas-container">
 
                 <div class="offcanvas-header">
-                    <h3>Menu Lateral</h3>
+
+                    <h3>Olá, <?= htmlspecialchars($nome_exibicao); ?>!</h3>
+
                     <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
                 </div>
 

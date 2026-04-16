@@ -39,8 +39,8 @@ $result = $stmt->get_result();
             <h2>Biblioteca Atenas</h2>
             <nav>
                 <a href="./index.php">📚 Acervo</a>
-                <a href="./pages/cadastro.php">➕ Cadastro</a>
                 <a href="./meus_emprestimos.php">📋 Meus Empréstimos</a>
+                <a href="./pages/inicio.php">Voltar</a>
             </nav>
         </aside>
 

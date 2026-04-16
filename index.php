@@ -1,5 +1,5 @@
 <?php
-include("./config/verifica_funcionario.php");
+include("./config/verifica_login.php");
 include_once("./config/conexao.php");
 
 $idAutor = filter_input(INPUT_GET, 'autor', FILTER_VALIDATE_INT);
