@@ -1,6 +1,6 @@
 <?php
-include_once("./config/verifica_login.php");
-include_once("./config/conexao.php");
+include_once("../config/verifica_login.php");
+include_once("../config/conexao.php");
 
 
 
@@ -27,7 +27,7 @@ $result = $stmt->get_result();
 
     <title>Meus Empréstimos</title>
 
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
@@ -38,9 +38,9 @@ $result = $stmt->get_result();
         <aside class="sidebar">
             <h2>Biblioteca Atenas</h2>
             <nav>
-                <a href="./index.php">📚 Acervo</a>
-                <a href="./meus_emprestimos.php">📋 Meus Empréstimos</a>
-                <a href="./pages/inicio.php">Voltar</a>
+                <a href="acervo.php">📚 Acervo</a>
+                <a href="#">📋 Meus Empréstimos</a>
+                <a href="inicio.php">Voltar</a>
             </nav>
         </aside>
 
@@ -76,7 +76,7 @@ $result = $stmt->get_result();
                             </td>
 
                             <td>
-                                <a class="btn-devolver" href="./config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
+                                <a class="btn-devolver" href="../config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
                                     Devolver
                                 </a>
                             </td>

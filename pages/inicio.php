@@ -68,7 +68,7 @@ $nome_exibicao = $dados_usuario['user_regi'];
                 </div>
 
                 <div class="offcanvas-body">
-                    <a href="../meus_emprestimos.php">meus emprestimos</a>
+                    <a href="meus_emprestimos.php">meus emprestimos</a>
                     <a href="#">Services</a>
                     <a href="#">Clients</a>
                     <a href="#">Contact</a>

@@ -34,7 +34,7 @@ $autores = $conn->query($sqlAutores);
         <aside class="sidebar">
             <h2>Bibliotheca</h2>
             <nav>
-                <a href="../index.php">📚 Acervo</a>
+                <a href="acervo.php">📚 Acervo</a>
                 <a href="cadastro.php">➕ Cadastro</a>
             </nav>
         </aside>
