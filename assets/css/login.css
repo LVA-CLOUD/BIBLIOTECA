@@ -196,7 +196,11 @@ body::before {
     background: var(--lamp-shade);
 }
 
-.register-btn {
+.registro-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
     padding: 15px;
 
@@ -204,23 +208,22 @@ body::before {
     border: none;
     border-radius: 15px;
 
-    font-weight: 600;
-    color: #121417;
-    font-size: 1rem;
-
     cursor: pointer;
     transition: 0.3s;
     margin-top: 10px;
 }
 
-.login-form a:not(.login-btn) {
-    color: white;
-    text-decoration: none;
-}
-
-.register-btn:hover {
+.registro-btn:hover {
     transform: scale(1.02);
     background: var(--lamp-shade);
+}
+
+.login-form a {
+    color: #121417;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+
 }
 
 .ors {

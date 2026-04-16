@@ -107,8 +107,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="linha"></div>
                 </div>
 
-
-                <a href="registrar.php" class="login-bnt">Registra-se</a>
+                <div class="registro-btn">
+                    <a href="registrar.php">Registra-se</a>
+                </div>
             </form>
 
         </div>
