@@ -9,5 +9,10 @@ $stmt->bind_param("ss", $nome, $nacionalidade);
 $stmt->execute();
 
 // para se manter na pgina de cadastro
-header("Location: ../pages/cadastro.php");
+if ($stmt->execute()) {
+    header("Location: ../pages/cadastro.php?status=success&msg=Autor cadastrado com sucesso!");
+} else {
+    header("Location: ../pages/cadastro.php?status=error&msg=Erro ao cadastrar autor.");
+}
+exit();
 ?>

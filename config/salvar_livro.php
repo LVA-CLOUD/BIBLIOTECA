@@ -10,5 +10,10 @@ $stmt->bind_param("ssi", $titulo, $ano, $id_autor);
 $stmt->execute();
 
 // para se manter na pagina de cadastro
-header("Location: ../pages/cadastro.php");
+if ($stmt->execute()) {
+    header("Location: ../pages/cadastro.php?status=success&msg=Livro cadastrado com sucesso!");
+} else {
+    header("Location: ../pages/cadastro.php?status=error&msg=Erro ao cadastrar livro.");
+}
+exit();
 ?>

@@ -18,12 +18,15 @@ $autores = $conn->query($sqlAutores);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/cadastro.css">
     <title>Cadastro - Biblioteca</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Notificação Toast -->
+    <div id="toast-container" class="toast-container"></div>
 
     <div class="layout">
 
@@ -81,7 +84,9 @@ $autores = $conn->query($sqlAutores);
         </main>
 
     </div>
+    
 
+    <script src="../assets/JS/cadastro.js"></script>
 </body>
 
 </html>

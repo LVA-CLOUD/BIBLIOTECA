@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --font-primary:"Poppins", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
+}
+
+
+/* Notificação Toast */
+
+/* Container que segura as notificações no canto da tela */
+.toast-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+/* Estilo base do Toast */
+.toast {
+    min-width: 250px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+
+    border-radius: 8px;
+    color: #5a3e1b;
+    font-family: var(--font-primary);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+/* Cores de sucesso e erro */
+.toast.success {
+    background-color: #f5e6c8;
+    border-top: 5px solid #5a3e1b;
+}
+
+.toast.error {
+    background-color: #e74c3c;
+    border-top: 5px solid #c0392b;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Classe para sumir suavemente */
+.toast.fade-out {
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
