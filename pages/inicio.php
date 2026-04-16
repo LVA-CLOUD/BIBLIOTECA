@@ -58,7 +58,7 @@ include("../config/conexao.php");
                 </div>
 
                 <div class="logout">
-                    <button onclick="fazerLogout()" class="btn-logout-sidebar">Sair</button>
+                    <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
                 </div>
             </div>
             </ul>
@@ -181,5 +181,7 @@ include("../config/conexao.php");
     <script src="../assets/js/nav.js"></script>
 
 
-    <script>console.log("JS carregado");</script>
+    <script>
+        console.log("JS carregado");
+    </script>
 </body>

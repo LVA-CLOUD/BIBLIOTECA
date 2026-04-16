@@ -54,3 +54,6 @@ livroMenor.forEach((livroMenor) => {
 
     }
 });
+
+
+// fazer logout

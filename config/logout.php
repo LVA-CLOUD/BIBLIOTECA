@@ -1,6 +1,8 @@
 <?php
-session_start();
-session_destroy();
+session_start(); // Inicia para poder identificar qual sessão destruir
+session_unset(); // Limpa as variáveis da sessão
+session_destroy(); // Destrói a sessão
 
-echo "ok";
-exit;
+// Redireciona para a página inicial que está na raiz
+header("Location: ../paginaInicial.php");
+exit();

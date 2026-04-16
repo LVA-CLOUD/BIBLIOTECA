@@ -135,7 +135,7 @@ $result = $stmt->get_result();
                         <div class="livro <?= $livro['emprestado'] ? 'bloqueado' : '' ?>"
                             <?= !$livro['emprestado'] ? "onclick=\"abrirModal({$livro['id_livro']}, '" . addslashes($livro['titulo']) . "')\"" : '' ?>>
 
-                            <h3><?= $livro['titulo'] ?></h3>
+                            <h3><?=($livro['titulo']) ?></h3>
                             <p><?= $livro['ano_publicacao'] ?></p>
                             <span><?= $livro['nome_autor'] ?></span>
 
