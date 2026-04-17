@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/swup.css">
     <title>Livraria Athenas</title>
 </head>
 
 <body>
-
+    
     <header>
-
+        
         <nav>
             <img src="./assets/img/LOGOS/logo1.png" alt="Logo">
-
+            
             <ul>
                 <li>Inicio</li>
                 <li>Livros</li>
@@ -23,11 +24,11 @@
                 <li>Sobre</li>
                 <a href="./pages/login.php">Login</a>
             </ul>
-
+            
         </nav>
-
+        
     </header>
-
+    
     <main>
         <!-- Hero -->
         <section class="hero">
@@ -41,6 +42,7 @@
         </section>
 
     </main>
+
 </body>
 
 </html>
