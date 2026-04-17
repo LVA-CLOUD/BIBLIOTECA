@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Uncial+Antiqua&display=swap');:root {
+    --font-primary: "Poppins", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
+    --font-terceira: "Uncial Antiqua", system-ui;
+    --font-quarta: "EB Garamond", serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #121417;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1vw 3.5vw;
+    /* border-bottom: 1px #ffffff solid; */
+}
+
+nav img {
+    max-width: 60px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 2vw;
+
+    color: white;
+    font-family: var(--font-primary);
+    cursor: pointer;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: white;
+    background-color: #9da2ff;
+
+    padding: 0.6vw 1vw;
+    border-radius: 0.4vw;
+}
+
+nav li:hover {
+    color: #9da2ff;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.192);
+    transition: all 0.6s ease;
+}
+
+nav ul a:hover {
+    background-color: #8489e4;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.562);
+    transition: all 0.6s ease;
+}
+
+/* Hero */
+
+.hero {
+    display: flex;
+    text-align: end;
+    color: white;
+}
+
+.hero img {
+    padding-left: 8vw;
+    max-width: 42vw;
+}
+
+.titulo h1 {
+    font-family: var(--font-terceira);
+    padding-top: 5vw;
+    padding-right: 13vw;
+    font-size: 6vw;
+}
+
+.titulo p {
+    font-family: var(--font-quarta);
+    padding-left: 10vw;
+    padding-top: 1vw;
+    font-size: 1.5vw;
+    max-width: 77%;
+}
