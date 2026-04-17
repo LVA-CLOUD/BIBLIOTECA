@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cutive&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
     --bg-color: #121417;
@@ -10,6 +11,8 @@
     --on: 0;
     --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     --font-primary: 'Cutive', sans-serif;
+    --font-terceira: "Poppins", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
 }
 
 * {
@@ -22,7 +25,7 @@ body {
     place-items: center;
     background: var(--bg-color);
     margin: 0;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-terceira);
     overflow: hidden;
     transition: background var(--transition);
 }
@@ -138,6 +141,7 @@ body::before {
 
 .login-form h2 {
     color: #fff;
+    font-family: var(--font-terceira);
     margin: 0 0 1.5rem 0;
     font-weight: 500;
     text-align: center;
@@ -211,6 +215,10 @@ body::before {
     cursor: pointer;
     transition: 0.3s;
     margin-top: 10px;
+}
+
+.registro-btn a {
+    font-family: var(--font-terceira);
 }
 
 .registro-btn:hover {
