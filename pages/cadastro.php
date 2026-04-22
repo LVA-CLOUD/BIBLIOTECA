@@ -34,18 +34,19 @@ $autores = $conn->query($sqlAutores);
         <aside class="sidebar">
             <h2>Bibliotheca</h2>
             <nav>
-                <a href="acervo.php">📚 Acervo</a>
-                <a href="cadastro.php">➕ Cadastro</a>
+                <a href="acervofuncionario.php">📚 Acervo</a>
+                <a href="emprestimo_funcionario.php">📋 Emprestimos</a>
+                <a href="#">➕ Cadastro</a>
             </nav>
         </aside>
-        
+
         <!-- 📖 CONTEÚDO -->
         <main class="content">
-            
+
             <header class="header">
                 <h1>Cadastro</h1>
             </header>
-            
+
             <h2>Registrar Manuscrito</h2>
 
 
@@ -84,7 +85,7 @@ $autores = $conn->query($sqlAutores);
         </main>
 
     </div>
-    
+
 
     <script src="../assets/JS/cadastro.js"></script>
 </body>

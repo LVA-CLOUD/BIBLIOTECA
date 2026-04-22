@@ -6,16 +6,16 @@ session_start();
  * Ajustado para buscar dentro da pasta 'config', 
  * já que o emprestar.php está na raiz.
  */
-if (file_exists("./config/conexao.php")) {
-    include_once("./config/conexao.php");
+if (file_exists("conexao.php")) {
+    include_once("conexao.php");
 } else {
-    die("Erro crítico: O arquivo ./config/conexao.php não foi encontrado.");
+    die("Erro crítico: O arquivo conexao.php não foi encontrado.");
 }
 
 /**
  * 2. VERIFICAÇÃO DE LOGIN
  */
-if (!isset($_SESSION['id_regi'])) {
+if (!isset($_SESSION['id_usuario'])) {
     die("Erro: Você precisa estar logado. Verifique se a variável 'id_regi' existe na sua sessão.");
 }
 

@@ -82,6 +82,7 @@ $result = $stmt->get_result();
             <nav>
                 <a href="#">📚 Acervo</a>
                 <a href="meus_emprestimos.php">📋 Meus Empréstimos</a>
+                <a href="inicio.php">Voltar</a>
             </nav>
         </aside>
 
@@ -158,7 +159,10 @@ $result = $stmt->get_result();
         <div class="modal-content">
             <h3 id="modalTitulo"></h3>
             <p>Você gostaria do empréstimo deste livro?</p>
-            <button onclick="confirmarEmprestimo()">Sim</button>
+            <button onclick="confirmarEmprestimo()">Sim
+                
+            </button>
+
             <button onclick="fecharModal()">Não</button>
         </div>
     </div>
@@ -184,7 +188,7 @@ $result = $stmt->get_result();
             }
 
             // redireciona para o PHP que faz o empréstimo
-            window.location.href = "emprestar.php?id_livro=" + livroSelecionado;
+            window.location.href = "../config/solicitar_emprestimo.php?id_livro=" + livroSelecionado;
         }
     </script>
 </body>

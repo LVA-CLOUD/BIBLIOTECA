@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("./config/conexao.php");
+include_once("conexao.php");
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_usuario'])) {
@@ -16,7 +16,7 @@ if ($id_livro) {
     $stmt->bind_param("ii", $id_livro, $id_regi);
     
     if ($stmt->execute()) {
-        header("Location: ../meus_emprestimos.php?status=devolvido");
+        header("Location: ../pages/meus_emprestimos.php?status=devolvido");
     } else {
         echo "Erro ao processar devolução.";
     }
