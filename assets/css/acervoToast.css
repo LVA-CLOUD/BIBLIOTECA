@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --font-primary:"Poppins", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
+}
+
+/* Notificação toast acervo cliente */
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    font-family: var(--font-primary);
+}
+
+.toast {
+    min-width: 250px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-left: 5px solid #28a745; /* Cor verde de sucesso */
+    overflow: hidden;
+    display: none; /* Escondido por padrão */
+    animation: slideIn 0.3s ease-out;
+}
+
+.toast-header {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toast-header button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+}
+
+.toast-body {
+    padding: 15px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.toast.show {
+    display: block;
+}

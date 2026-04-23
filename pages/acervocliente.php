@@ -67,13 +67,22 @@ $result = $stmt->get_result();
     <title>Biblioteca Imperial</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
+    <link rel="stylesheet" href="../assets/css/acervoToast.css">
 </head>
 
 <body>
-
-    <?php if (isset($_GET['sucesso'])): ?>
-        <div class="alerta">📚 Livro emprestado com sucesso!</div>
-    <?php endif; ?>
+    <!-- Notificação Toast -->
+    <div id="toast-container" class="toast-container">
+        <div id="toast" class="toast">
+            <div class="toast-header">
+                <strong>Biblioteca Atenas</strong>
+                <button onclick="hideToast()">&times;</button>
+            </div>
+            <div class="toast-body" id="toast-message">
+                Solicitação enviada com sucesso!
+            </div>
+        </div>
+    </div>
 
     <div class="layout">
 
@@ -136,7 +145,7 @@ $result = $stmt->get_result();
                         <div class="livro <?= $livro['emprestado'] ? 'bloqueado' : '' ?>"
                             <?= !$livro['emprestado'] ? "onclick=\"abrirModal({$livro['id_livro']}, '" . addslashes($livro['titulo']) . "')\"" : '' ?>>
 
-                            <h3><?=($livro['titulo']) ?></h3>
+                            <h3><?= ($livro['titulo']) ?></h3>
                             <p><?= $livro['ano_publicacao'] ?></p>
                             <span><?= $livro['nome_autor'] ?></span>
 
@@ -160,37 +169,15 @@ $result = $stmt->get_result();
             <h3 id="modalTitulo"></h3>
             <p>Você gostaria do empréstimo deste livro?</p>
             <button onclick="confirmarEmprestimo()">Sim
-                
+
             </button>
 
             <button onclick="fecharModal()">Não</button>
         </div>
     </div>
 
-    <script>
-        let livroSelecionado = null;
-
-        function abrirModal(id, titulo) {
-            livroSelecionado = id;
-
-            document.getElementById('modalTitulo').innerText = titulo;
-            document.getElementById('modal').style.display = 'flex';
-        }
-
-        function fecharModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
-
-        function confirmarEmprestimo() {
-            if (!livroSelecionado) {
-                alert("Erro: nenhum livro selecionado");
-                return;
-            }
-
-            // redireciona para o PHP que faz o empréstimo
-            window.location.href = "../config/solicitar_emprestimo.php?id_livro=" + livroSelecionado;
-        }
-    </script>
+    <!-- JS -->
+    <script src="../assets/JS/acervo.js"></script>
 </body>
 
 </html>

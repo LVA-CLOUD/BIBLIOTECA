@@ -12,10 +12,10 @@ $data_devolucao = date('Y-m-d', strtotime('+7 days'));
 if ($id_livro && $id_usuario) {
     // Inserimos com o status 'pendente'
     $sql = "INSERT INTO emprestimos (id_regi, id_livro, data_emprestimo, data_devolucao, status) VALUES (?, ?, ?, ?, 'pendente')";
-    
+
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iiss", $id_usuario, $id_livro, $data_hoje, $data_devolucao);
-    
+
     if ($stmt->execute()) {
         // Redireciona de volta para o acervo com uma mensagem de sucesso
         header("Location: ../pages/acervocliente.php?sucesso=1");
@@ -24,7 +24,6 @@ if ($id_livro && $id_usuario) {
         echo "Erro ao processar solicitação: " . $conn->error;
     }
 } else {
-    header("Location: ../pages/acervocliente.php");
+    header("Location: ../view/acervocliente.php?sucesso=1");
     exit();
 }
-?>
