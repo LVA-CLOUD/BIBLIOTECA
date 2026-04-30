@@ -19,6 +19,7 @@ $autores = $conn->query($sqlAutores);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/cadastro.css">
+    <link rel="stylesheet" href="../assets/css/logout.css">
     <title>Cadastro - Biblioteca</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
@@ -37,7 +38,19 @@ $autores = $conn->query($sqlAutores);
                 <a href="acervofuncionario.php">📚 Acervo</a>
                 <a href="emprestimo_funcionario.php">📋 Emprestimos</a>
                 <a href="#">➕ Cadastro</a>
+<<<<<<< Updated upstream
+=======
+
+
+                <div class="logout">
+                    <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
+                </div>
+>>>>>>> Stashed changes
             </nav>
+
+            <div class="logout">
+                <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
+            </div>
         </aside>
 
         <!-- 📖 CONTEÚDO -->

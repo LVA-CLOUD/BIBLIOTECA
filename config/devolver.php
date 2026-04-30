@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 
 $id_regi = $_SESSION['id_usuario'];
-$id_livro = filter_input(INPUT_GET, 'id_livro', FILTER_VALIDATE_INT);
+$id_livro = filter_input(INPUT_POST, 'id_livro', FILTER_VALIDATE_INT);
 
 if ($id_livro) {
     $stmt = $conn->prepare("DELETE FROM emprestimos WHERE id_livro = ? AND id_regi = ?");
