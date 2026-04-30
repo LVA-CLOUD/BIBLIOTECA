@@ -68,11 +68,8 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
     <link rel="stylesheet" href="../assets/css/acervoToast.css">
-<<<<<<< Updated upstream
-=======
     <link rel="stylesheet" href="../assets/css/logout.css">
 
->>>>>>> Stashed changes
 </head>
 
 <body>
@@ -94,19 +91,12 @@ $result = $stmt->get_result();
         <aside class="sidebar">
             <h2>Biblioteca Atenas</h2>
             <nav>
-<<<<<<< Updated upstream
-                <a href="#">📚 Acervo</a>
-                <a href="meus_emprestimos.php">📋 Meus Empréstimos</a>
-                <a href="inicio.php">Voltar</a>
-            </nav>
-=======
                 <a href="meus_emprestimos.php">📋 Meus Empréstimos</a>
                 <a href="inicio.php">Voltar</a>
             </nav>
             <div class="logout">
                 <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
             </div>
->>>>>>> Stashed changes
         </aside>
 
         <main class="content">

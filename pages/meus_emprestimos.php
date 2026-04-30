@@ -14,6 +14,10 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_regi);
 $stmt->execute();
 $result = $stmt->get_result();
+while($row = $result->fetch_assoc()) {
+    $livros[] = $row;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -60,22 +64,9 @@ $result = $stmt->get_result();
                             <th>Devolução</th>
                             <th>Status</th>
                             <th>Ação</th>
-                            <td><?= $row['titulo'] ?></td>
-                            <td><?= $row['data_emprestimo'] ?></td>
-                            <td><?= $row['data_devolucao'] ?></td>
-
-                            <td>
-                                <?= $atrasado ? "<span class='status atraso'>🔴 Atrasado</span>" : "<span class='status ok'>🟢 Em dia</span>" ?>
-                            </td>
-
-                            <td>
-                                <form action="../config/devolver.php" method="POST">
-                                    <input type="hidden" name="id_livro" value="<?= $row['id_livro'] ?>">
-                                    <button type="submit" class="btn-devolver">Devolver</button>
-                                </form>
-                            </td>
                         </tr>
                     </thead>
+
 
                     <tbody>
                         <?php while ($row = $result->fetch_assoc()):
@@ -99,13 +90,12 @@ $result = $stmt->get_result();
                                 </td>
 
                                 <td>
-                                    <?php if ($row['status'] == 'aprovado'): ?>
-                                        <a class="btn-devolver" href="../config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
-                                            Devolver
-                                        </a>
-                                    <?php else: ?>
-                                        ---
-                                    <?php endif; ?>
+                                    <?php foreach ($livros as $livro): ?>
+                                        <form method="POST" action="devolver.php">
+                                            <input type="hidden" name="id_livro" value="<?= $livro['id_livro'] ?>">
+                                            <button type="submit">Devolver <?= $livro['titulo'] ?></button>
+                                        </form>
+                                    <?php endforeach; ?>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
