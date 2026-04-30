@@ -1,6 +1,10 @@
 <?php
 include_once("../config/conexao.php");
 
+// Captura dados do Google se existirem
+$nomePreenchido = $_SESSION['google_data']['nome'] ?? '';
+$emailPreenchido = $_SESSION['google_data']['email'] ?? '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome  = $_POST['nome'];
     $user  = $_POST['user'];
@@ -34,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_ins->bind_param("ssssi", $nome, $user, $email, $senhaHash, $nivel_padrao);
 
         if ($stmt_ins->execute()) {
-            $stmt_ins->close();
+            unset($_SESSION['google_data']); // Limpa dados temporários
             header("Location: login.php?cadastro=sucesso");
             exit;
         } else {
@@ -83,36 +87,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
             <?php endif; ?>
 
-            <form method="POST" action="">
-                <div class="form-group">
-                    <label>Nome</label>
-                    <input type="text" name="nome" placeholder="Seu nome completo" required />
-                </div>
+            <div class="login-form">
+                <h2>Bem Vindo!</h2>
+                
+                <?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
 
-                <div class="form-group">
-                    <label>Usuário</label>
-                    <input type="text" name="user" placeholder="Nome de usuário" required />
-                </div>
+                <form method="POST" action="">
+                    <div class="form-group">
 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="seu@email.com" required />
-                </div>
+                        <label>Nome</label>
+                        <input type="text" name="nome" value="<?php echo htmlspecialchars($nomePreenchido); ?>" required />
+                    </div>
 
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" name="senha" placeholder="••••••••" required />
-                </div>
+                    <div class="form-group">
+                        <label>Usuário</label>
+                        <input type="text" name="user" required />
+                    </div>
 
-                <button class="login-btn" type="submit">Cadastrar</button>
-            </form>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" value="<?php echo htmlspecialchars($emailPreenchido); ?>" required <?php echo !empty($emailPreenchido) ? 'readonly' : ''; ?> />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" name="senha" required />
+                    </div>
+
+                    <button class="login-btn" type="submit">Cadastrar</button>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
+        <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+        <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
 
-    <script src="../assets/JS/login.js"></script>
+        <script src="../assets/JS/login.js"></script>
 </body>
 
 </html>

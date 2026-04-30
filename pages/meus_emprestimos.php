@@ -60,7 +60,7 @@ $result = $stmt->get_result();
                             <th>Ação</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
                         <?php while ($row = $result->fetch_assoc()):
                             $atrasado = (strtotime($row['data_devolucao']) < time() && $row['status'] == 'aprovado');
@@ -93,11 +93,11 @@ $result = $stmt->get_result();
                                 </td>
                             </tr>
                         <?php endwhile; ?>
-            
+
                     </tbody>
-            
+
                 </table>
-            
+
             </section>
 
         </main>

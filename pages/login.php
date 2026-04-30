@@ -111,15 +111,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="registro-btn">
                     <a href="registrar.php">Registra-se</a>
                 </div>
+
+                <div id="g_id_onload"
+
+                    data-client_id="797914724661-biug0qbtbf9190e5c0m2m714eaoorrvn.apps.googleusercontent.com"
+
+                    data-callback="handleCredentialResponse">
+
+                </div>
+
+                <div class="g_id_signin"
+
+                    data-type="standard"
+
+                    data-size="large">
+
+                </div>
             </form>
 
         </div>
     </div>
 
+    <!-- Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Gsap -->
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
     <!-- JS -->
     <script src="../assets/JS/login.js"></script>
+    <script src="../assets/JS/google.js"></script>
 
 </body>
