@@ -1,3 +1,4 @@
 # Não enviar para o git a pasta composer
 
 /composer/
+clienteGoogle.json
