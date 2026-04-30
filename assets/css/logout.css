@@ -1,0 +1,27 @@
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160%;
+}
+
+.btn-logout-sidebar {
+    width: 60%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #eb0b0b;
+    color: rgb(255, 255, 255);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: 0.3s;
+    opacity: 1;
+}
+
+.btn-logout-sidebar:hover {
+    background: #e60000;
+}
