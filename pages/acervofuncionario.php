@@ -67,6 +67,7 @@ $result = $stmt->get_result();
     <title>Biblioteca Imperial</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
+    <link rel="stylesheet" href="../assets/css/logout.css">
 </head>
 
 <body>
@@ -83,6 +84,13 @@ $result = $stmt->get_result();
                 <a href="#">📚 Acervo</a>
                 <a href="emprestimo_funcionario.php">📋 Emprestimos</a>
                 <a href="cadastro.php">➕ Cadastro</a>
+<<<<<<< Updated upstream
+=======
+
+                <div class="logout">
+                    <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
+                </div>
+>>>>>>> Stashed changes
             </nav>
         </aside>
 
@@ -136,7 +144,7 @@ $result = $stmt->get_result();
                         <div class="livro <?= $livro['emprestado'] ? 'bloqueado' : '' ?>"
                             <?= !$livro['emprestado'] ? "onclick=\"abrirModal({$livro['id_livro']}, '" . addslashes($livro['titulo']) . "')\"" : '' ?>>
 
-                            <h3><?=($livro['titulo']) ?></h3>
+                            <h3><?= ($livro['titulo']) ?></h3>
                             <p><?= $livro['ano_publicacao'] ?></p>
                             <span><?= $livro['nome_autor'] ?></span>
 
