@@ -6,7 +6,6 @@ $nacionalidade = $_POST['nacionalidade'];
 
 $stmt = $conn->prepare("INSERT INTO autores (nome, nacionalidade) VALUES (?, ?)");
 $stmt->bind_param("ss", $nome, $nacionalidade);
-$stmt->execute();
 
 // para se manter na pgina de cadastro
 if ($stmt->execute()) {
