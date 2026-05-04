@@ -37,17 +37,9 @@ $result = $stmt->get_result();
 
             <nav>
                 <a href="acervocliente.php">📚 Acervo</a>
-<<<<<<< Updated upstream
                 <a href="#">📋 Meus Empréstimos</a>
                 <a href="inicio.php">Voltar</a>
             </nav>
-=======
-                <a href="inicio.php">Voltar</a>
-            </nav>
-            <div class="logout">
-                <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
-            </div>
->>>>>>> Stashed changes
 
         </aside>
 
@@ -63,28 +55,11 @@ $result = $stmt->get_result();
 
                     <thead>
                         <tr>
-<<<<<<< Updated upstream
                             <th>Livro</th>
                             <th>Empréstimo</th>
                             <th>Devolução</th>
                             <th>Status</th>
                             <th>Ação</th>
-=======
-                            <td><?= $row['titulo'] ?></td>
-                            <td><?= $row['data_emprestimo'] ?></td>
-                            <td><?= $row['data_devolucao'] ?></td>
-
-                            <td>
-                                <?= $atrasado ? "<span class='status atraso'>🔴 Atrasado</span>" : "<span class='status ok'>🟢 Em dia</span>" ?>
-                            </td>
-
-                            <td>
-                                <form action="../config/devolver.php" method="POST">
-                                    <input type="hidden" name="id_livro" value="<?= $row['id_livro'] ?>">
-                                    <button type="submit" class="btn-devolver">Devolver</button>
-                                </form>
-                            </td>
->>>>>>> Stashed changes
                         </tr>
                     </thead>
 
