@@ -87,9 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($erro)): ?>
                 <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
             <?php endif; ?>
-
-            <div class="login-form">
-                <h2>Bem Vindo!</h2>
                 
                 <?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
 
@@ -117,12 +114,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <button class="login-btn" type="submit">Cadastrar</button>
                 </form>
-            </div>
-        </div>
 
+        </div>
+        
+        <!-- Gsap -->
         <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
         <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
-
+        <!-- JS -->
         <script src="../assets/JS/login.js"></script>
 </body>
 
