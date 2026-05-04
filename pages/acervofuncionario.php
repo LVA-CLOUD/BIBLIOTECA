@@ -160,7 +160,7 @@ $result = $stmt->get_result();
     </div>
 
     <!-- MODAL -->
-    <div id="modal" class="modal">
+    <!-- <div id="modal" class="modal">
         <div class="modal-content">
             <h3 id="modalTitulo"></h3>
             <p>Você gostaria do empréstimo deste livro?</p>
@@ -192,7 +192,7 @@ $result = $stmt->get_result();
             // redireciona para o PHP que faz o empréstimo
             window.location.href = "emprestar.php?id_livro=" + livroSelecionado;
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
