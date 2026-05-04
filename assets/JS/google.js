@@ -1,4 +1,5 @@
 function handleCredentialResponse(response) {
+    // Certifique-se que o caminho abaixo aponta corretamente para o callback.php
     fetch("../config/callback.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -7,14 +8,21 @@ function handleCredentialResponse(response) {
     .then(res => res.json())
     .then(data => {
         if (data.status === "success") {
-            // Se já tem conta, vai para o dashboard que leva ao inicio
-            window.location.href = "../config/dashboard.php";
+            // Lógica de redirecionamento baseada no nível vindo do PHP
+            if (data.nivel == 2) {
+                window.location.href = "../pages/acervofuncionario.php";
+            } else {
+                window.location.href = "../pages/inicio.php";
+            }
         } else if (data.status === "new_user") {
-            // Se não tem conta, vai para o registro
-            window.location.href = "registro.php";
+            // Se não tem conta, vai para a página de registro
+            window.location.href = "../pages/registrar.php"; 
         } else {
-            alert("Erro na autenticação com o Google.");
+            alert("Erro na autenticação: " + (data.message || "Tente novamente."));
         }
     })
-    .catch(err => console.error("Erro no fetch:", err));
+    .catch(err => {
+        console.error("Erro no fetch:", err);
+        alert("Erro ao conectar com o servidor.");
+    });
 }

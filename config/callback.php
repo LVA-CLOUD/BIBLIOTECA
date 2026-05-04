@@ -1,7 +1,7 @@
 <?php
 session_start();
 require '../composer/vendor/autoload.php';
-include("../config/conexao.php");
+include("conexao.php");
 
 header('Content-Type: application/json');
 
@@ -12,14 +12,16 @@ if (!isset($input->token)) {
     exit;
 }
 
-$client = new Google_Client(['client_id' => '797914q24661-biug0qbtbf9190e5c0m2m714eaoorrvn.apps.googleusercontent.com']);
+// CORREÇÃO: O ID deve ser idêntico ao do HTML (removido o 'q' incorreto)
+$clientId = '797914724661-biug0qbtbf9190e5c0m2m714eaoorrvn.apps.googleusercontent.com';
+$client = new Google_Client(['client_id' => $clientId]);
+
 $payload = $client->verifyIdToken($input->token);
 
 if ($payload) {
     $emailGoogle = $payload['email'];
     $nomeGoogle = $payload['name'];
 
-    // Verifica se o e-mail já existe no banco
     $sql = "SELECT id_regi, id_nivel FROM registro WHERE email_regi = ? LIMIT 1";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $emailGoogle);
@@ -27,15 +29,16 @@ if ($payload) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // USUÁRIO EXISTE: Inicia sessão padrão do sistema
         $userDB = $result->fetch_assoc();
         $_SESSION['id_usuario'] = $userDB['id_regi'];
         $_SESSION['id_nivel'] = $userDB['id_nivel'];
-        $_SESSION['user'] = ["nome" => $nomeGoogle, "email" => $emailGoogle];
-
-        echo json_encode(["status" => "success"]);
+        
+        // Retornamos o nível para o JavaScript saber para onde redirecionar
+        echo json_encode([
+            "status" => "success", 
+            "nivel" => $userDB['id_nivel']
+        ]);
     } else {
-        // USUÁRIO NÃO EXISTE: Salva na sessão para o registro.php
         $_SESSION['google_data'] = [
             "nome" => $nomeGoogle,
             "email" => $emailGoogle
@@ -45,3 +48,4 @@ if ($payload) {
 } else {
     echo json_encode(["status" => "error", "message" => "Token inválido"]);
 }
+exit;

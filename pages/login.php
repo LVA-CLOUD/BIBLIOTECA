@@ -53,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/swup.css">
+
+    <!-- Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Login</title>
 </head>
 
@@ -132,8 +135,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <!-- Google -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Gsap -->
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
