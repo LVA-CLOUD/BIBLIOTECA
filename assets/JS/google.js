@@ -10,13 +10,13 @@ function handleCredentialResponse(response) {
         if (data.status === "success") {
             // Lógica de redirecionamento baseada no nível vindo do PHP
             if (data.nivel == 2) {
-                window.location.href = "../pages/acervofuncionario.php";
+                window.location.href = "acervofuncionario.php";
             } else {
-                window.location.href = "../pages/inicio.php";
+                window.location.href = "inicio.php";
             }
         } else if (data.status === "new_user") {
             // Se não tem conta, vai para a página de registro
-            window.location.href = "../pages/registrar.php"; 
+            window.location.href = "registrar.php"; 
         } else {
             alert("Erro na autenticação: " + (data.message || "Tente novamente."));
         }

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("../config/conexao.php");
 
 // Captura dados do Google se existirem
