@@ -28,11 +28,8 @@ $result = $stmt->get_result();
     <title>Empréstimos</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
-<<<<<<< Updated upstream
-=======
     <link rel="stylesheet" href="../assets/css/logout.css">
 
->>>>>>> Stashed changes
 </head>
 
 <body>
@@ -46,13 +43,10 @@ $result = $stmt->get_result();
                 <a href="acervofuncionario.php">📚 Acervo</a>
                 <a href="#">📋 Emprestimos</a>
                 <a href="cadastro.php">➕ Cadastro</a>
-<<<<<<< Updated upstream
-=======
 
                 <div class="logout">
                     <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
                 </div>
->>>>>>> Stashed changes
             </nav>
         </aside>
 

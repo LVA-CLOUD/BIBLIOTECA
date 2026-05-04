@@ -84,13 +84,10 @@ $result = $stmt->get_result();
                 <a href="#">📚 Acervo</a>
                 <a href="emprestimo_funcionario.php">📋 Emprestimos</a>
                 <a href="cadastro.php">➕ Cadastro</a>
-<<<<<<< Updated upstream
-=======
 
                 <div class="logout">
                     <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
                 </div>
->>>>>>> Stashed changes
             </nav>
         </aside>
 
