@@ -91,12 +91,11 @@ $result = $stmt->get_result();
         <aside class="sidebar">
             <h2>Biblioteca Atenas</h2>
             <nav>
+                <a href="#">📚 Acervo</a>
                 <a href="meus_emprestimos.php">📋 Meus Empréstimos</a>
                 <a href="inicio.php">Voltar</a>
             </nav>
-            <div class="logout">
-                <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
-            </div>
+            
         </aside>
 
         <main class="content">
