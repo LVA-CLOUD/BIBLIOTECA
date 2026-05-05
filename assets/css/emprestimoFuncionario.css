@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+    --font-primary:"Poppins", sans-serif;
+    --font-secondary: "Roboto", sans-serif;
+}
+
+td a {
+    font-family: var(--font-primary);
+    text-decoration: none;
+}
+
+td .btn-ok {
+    color: rgb(1, 185, 1);
+}
+
+td .btn-negativo {
+    color: red;
+}
+
+td .btn-negativo:hover {
+    color: rgb(207, 1, 1);
+    transition: color 0.5s ease;
+}
+
+td .btn-ok:hover {
+    color: green;
+    transition: color 0.5s ease;
+}
+
+td {
+    background-color: #f5e6c8;
+    font-family: var(--font-primary);
+}

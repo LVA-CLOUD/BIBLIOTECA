@@ -29,6 +29,7 @@ $result = $stmt->get_result();
 
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/logout.css">
+    <link rel="stylesheet" href="../assets/css/emprestimoFuncionario.css">
 
 </head>
 

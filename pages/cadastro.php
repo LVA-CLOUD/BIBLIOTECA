@@ -44,10 +44,6 @@ $autores = $conn->query($sqlAutores);
                     <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
                 </div>
             </nav>
-
-            <div class="logout">
-                <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
-            </div>
         </aside>
 
         <!-- 📖 CONTEÚDO -->
@@ -77,6 +73,8 @@ $autores = $conn->query($sqlAutores);
                 <form method="POST" action="../config/salvar_livro.php" class="form">
                     <input type="text" name="titulo" placeholder="Título do Livro" required>
                     <input type="number" name="ano" placeholder="Ano de Publicação" required>
+
+                    <input type="number" name="quantidade" placeholder="Quantidade em Estoque" min="1" value="1" required>
 
                     <select name="id_autor" required>
                         <option value="">Selecione um autor</option>
