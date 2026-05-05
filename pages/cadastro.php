@@ -2,11 +2,17 @@
 include("../config/verifica_funcionario.php");
 include_once("../config/conexao.php");
 
+// 1. Buscar autores para o select de "Novo Livro" e para o datalist de autores
+$autores = $conn->query("SELECT * FROM autores ORDER BY nome");
 
-// 🔹 Buscar autores (para usar no select de livro)
-$sqlAutores = "SELECT * FROM autores ORDER BY nome";
-$autores = $conn->query($sqlAutores);
+// 2. BUSCA DOS LIVROS (Essa é a parte que estava faltando para definir a variável)
+$sqlBuscaLivros = "SELECT id_livro, titulo FROM livros ORDER BY titulo";
+$livrosParaExcluir = $conn->query($sqlBuscaLivros);
 
+// Verificar se a consulta falhou para evitar erros de objeto nulo
+if (!$livrosParaExcluir) {
+    die("Erro na consulta de livros: " . $conn->error);
+}
 ?>
 
 
@@ -90,12 +96,69 @@ $autores = $conn->query($sqlAutores);
                 </form>
             </section>
 
+            <section class="card">
+                <h2>Remover Registro</h2>
+                <div class="form">
+                    <input type="text" id="busca_item" list="lista_itens" placeholder="Digite o título do livro...">
+                    <datalist id="lista_itens">
+                        <?php
+                        $livrosParaExcluir->data_seek(0);
+                        while ($l = $livrosParaExcluir->fetch_assoc()):
+                        ?>
+                            <option data-id="<?= $l['id_livro'] ?>" value="<?= $l['titulo'] ?>">
+                            <?php endwhile; ?>
+                    </datalist>
+
+                    <button type="button" onclick="executarExclusao()" class="btn-excluir" style="background-color: #d9534f; margin-top: 10px;">
+                        Confirmar Exclusão
+                    </button>
+                    <!-- Local para mensagens de erro ou sucesso -->
+                    <p id="mensagem-retorno" style="margin-top: 10px; font-weight: bold;"></p>
+                </div>
+            </section>
         </main>
 
     </div>
 
 
     <script src="../assets/JS/cadastro.js"></script>
+
+    <script>
+        function executarExclusao() {
+            const input = document.getElementById('busca_item');
+            const msg = document.getElementById('mensagem-retorno');
+            const datalist = document.getElementById('lista_itens');
+            const opcao = Array.from(datalist.options).find(opt => opt.value === input.value);
+
+            if (!opcao) {
+                msg.style.color = "orange";
+                msg.innerText = "Selecione um livro da lista.";
+                return;
+            }
+
+            if (confirm(`Excluir "${input.value}" permanentemente?`)) {
+                const formData = new FormData();
+                formData.append('id_livro', opcao.getAttribute('data-id'));
+
+                fetch('../config/excluir_livro.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(res => {
+                        if (res.trim() === "sucesso") {
+                            msg.style.color = "green";
+                            msg.innerText = "Livro removido com sucesso!";
+                            setTimeout(() => location.reload(), 1500);
+                        } else {
+                            msg.style.color = "red";
+                            // Aqui ele vai mostrar se há vínculo com empréstimos
+                            msg.innerText = res;
+                        }
+                    });
+            }
+        }
+    </script>
 </body>
 
 </html>
