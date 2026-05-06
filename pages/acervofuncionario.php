@@ -67,7 +67,15 @@ $result = $stmt->get_result();
     <title>Biblioteca Imperial</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
-    <link rel="stylesheet" href="../assets/css/logout.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/acervoFunci.css">
+
+    <!-- GSTATIC -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FONTAWESOME -->
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -76,88 +84,127 @@ $result = $stmt->get_result();
         <div class="alerta">📚 Livro emprestado com sucesso!</div>
     <?php endif; ?>
 
-    <div class="layout">
 
-        <aside class="sidebar">
-            <h2>Biblioteca Atenas</h2>
-            <nav>
-                <a href="#">📚 Acervo</a>
-                <a href="emprestimo_funcionario.php">📋 Emprestimos</a>
-                <a href="cadastro.php">➕ Cadastro</a>
 
-                <div class="logout">
-                    <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
-                </div>
-            </nav>
-        </aside>
+    <nav class="navbar-vertical">
 
-        <main class="content">
+        <div class="logo">
+            <img src="../assets/img/LOGOS/logoAthenas.png" alt="">
+        </div>
 
-            <header class="header">
-                <h1>Biblioteca Imperial de Atenas</h1>
-            </header>
+        <div class="navbar-vertical-content">
 
-            <!-- FILTRO -->
-            <section class="card">
-                <h2>Filtrar</h2>
+            <ul class="nav flex-column px-2">
+                <li class="nav-item">
 
-                <form method="GET" class="form filtro-flex">
+                    <a class="nav-link" href="dashboard.php">
+                        <i class="fas fa-chart-pie"></i> Dashboard
+                    </a>
+                </li>
 
-                    <input type="text" name="pesquisa" placeholder="Pesquisar..."
-                        value="<?= isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '' ?>">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        <i class="fas fa-book"></i> Acervo
+                    </a>
+                </li>
 
-                    <select name="autor">
-                        <option value="">Autores</option>
-                        <?php
-                        $autores->data_seek(0);
-                        while ($autor = $autores->fetch_assoc()):
-                        ?>
-                            <option value="<?= $autor['id_autor'] ?>" <?= ($idAutor == $autor['id_autor']) ? 'selected' : '' ?>>
-                                <?= $autor['nome'] ?>
-                            </option>
-                        <?php endwhile; ?>
-                    </select>
 
-                    <select name="categoria">
-                        <option value="">Categorias</option>
-                        <option value="Terror" <?= ($categoria == "Terror") ? 'selected' : '' ?>>Terror</option>
-                        <option value="Romance" <?= ($categoria == "Romance") ? 'selected' : '' ?>>Romance</option>
-                        <option value="Suspense" <?= ($categoria == "Suspense") ? 'selected' : '' ?>>Suspense</option>
-                        <option value="Ficção" <?= ($categoria == "Ficção") ? 'selected' : '' ?>>Ficção</option>
-                    </select>
+                <li class="nav-item">
+                    <a class="nav-link" href="emprestimo_funcionario.php">
+                        <i class="fas fa-exchange-alt"></i> Empréstimos
+                    </a>
+                </li>
 
-                    <button type="submit">Filtrar</button>
-                </form>
-            </section>
+                <li class="nav-item">
+                    <a class="nav-link" href="cadastro.php">
+                        <i class="fas fa-plus-circle"></i> Cadastro
+                    </a>
+                </li>
 
-            <!-- LIVROS -->
-            <section class="card">
-                <h2>Acervo</h2>
+                <li class="nav-item">
+                    <a class="nav-link" href="editFunci.php">
+                        <i class="fas fa-pen"></i> Editar Livros
+                    </a>
+                </li>
+            </ul>
 
-                <div class="grid-livros">
+            <div class="row-sair"></div>
 
-                    <?php while ($livro = $result->fetch_assoc()): ?>
+            <div class="mt-4">
+                <button onclick="window.location.href='../config/logout.php'" class="btn w-100">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </nav>
 
-                        <div class="livro <?= $livro['emprestado'] ? 'bloqueado' : '' ?>"
-                            <?= !$livro['emprestado'] ? "onclick=\"abrirModal({$livro['id_livro']}, '" . addslashes($livro['titulo']) . "')\"" : '' ?>>
+    <main class="content">
 
-                            <h3><?= ($livro['titulo']) ?></h3>
-                            <p><?= $livro['ano_publicacao'] ?></p>
-                            <span><?= $livro['nome_autor'] ?></span>
+        <header class="header">
+            <h1>Biblioteca Imperial de Atenas</h1>
+        </header>
 
-                            <?php if ($livro['emprestado']): ?>
-                                <p class="indisponivel">Indisponível até <?= $livro['data_devolucao'] ?></p>
-                            <?php endif; ?>
+        <!-- FILTRO -->
+        <section class="card">
+            <h2>Filtrar</h2>
 
-                        </div>
+            <form method="GET" class="form filtro-flex">
 
+                <input type="text" name="pesquisa" placeholder="Pesquisar..."
+                    value="<?= isset($_GET['pesquisa']) ? $_GET['pesquisa'] : '' ?>">
+
+                <select name="autor">
+                    <option value="">Autores</option>
+                    <?php
+                    $autores->data_seek(0);
+                    while ($autor = $autores->fetch_assoc()):
+                    ?>
+                        <option value="<?= $autor['id_autor'] ?>" <?= ($idAutor == $autor['id_autor']) ? 'selected' : '' ?>>
+                            <?= $autor['nome'] ?>
+                        </option>
                     <?php endwhile; ?>
+                </select>
 
-                </div>
-            </section>
+                <select name="categoria">
+                    <option value="">Categorias</option>
+                    <option value="Terror" <?= ($categoria == "Terror") ? 'selected' : '' ?>>Terror</option>
+                    <option value="Romance" <?= ($categoria == "Romance") ? 'selected' : '' ?>>Romance</option>
+                    <option value="Suspense" <?= ($categoria == "Suspense") ? 'selected' : '' ?>>Suspense</option>
+                    <option value="Ficção" <?= ($categoria == "Ficção") ? 'selected' : '' ?>>Ficção</option>
+                </select>
 
-        </main>
-    </div>
+                <button type="submit">Filtrar</button>
+            </form>
+        </section>
+
+        <!-- LIVROS -->
+        <section class="card">
+            <h2>Acervo</h2>
+
+            <div class="grid-livros">
+
+                <?php while ($livro = $result->fetch_assoc()): ?>
+
+                    <div class="livro <?= $livro['emprestado'] ? 'bloqueado' : '' ?>"
+                        <?= !$livro['emprestado'] ? "onclick=\"abrirModal({$livro['id_livro']}, '" . addslashes($livro['titulo']) . "')\"" : '' ?>>
+
+                        <h3><?= ($livro['titulo']) ?></h3>
+                        <p><?= $livro['ano_publicacao'] ?></p>
+                        <span><?= $livro['nome_autor'] ?></span>
+
+                        <?php if ($livro['emprestado']): ?>
+                            <p class="indisponivel">Indisponível até <?= $livro['data_devolucao'] ?></p>
+                        <?php endif; ?>
+
+                    </div>
+
+                <?php endwhile; ?>
+
+            </div>
+        </section>
+
+    </main>
+
 
     <!-- MODAL -->
     <!-- <div id="modal" class="modal">

@@ -9,10 +9,16 @@ if (isset($_POST['id_livro'])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        echo "sucesso"; // O JavaScript lerá isso
+        echo "sucesso";
     } else {
-        echo "Erro ao deletar: " . $conn->error;
+        // Verifica se o erro é de restrição de chave estrangeira
+        if ($conn->errno == 1451) {
+            echo "Não é possível excluir: Este livro possui registros de empréstimos ativos.";
+        } else {
+            echo "Erro no banco de dados: " . $conn->error;
+        }
     }
     $stmt->close();
 }
+$conn->close();
 ?>

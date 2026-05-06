@@ -88,7 +88,7 @@ gsap.registerPlugin(Draggable);
 
 
 
-// Botao Login
+//---------- Botao Login
 
 function Login() {
     let email = document.getElementById("email").value;
@@ -113,7 +113,7 @@ function Login() {
 
             if (resposta === "Login Funcionario") {
                 // Redireciona para a pasta principal/cadastro
-                window.location.href = "cadastro.php";
+                window.location.href = "dashboard.php";
             } else if (resposta === "Login Comum") {
                 // Redireciona para a pasta de início
                 window.location.href = "inicio.php";

@@ -33,7 +33,7 @@ if (!$livrosParaExcluir) {
 
     <!-- SIDEBAR -->
     <div class="sidebar p-3">
-
+        
         <div class="logo">
             <img src="../assets/img/LOGOS/logoAthenas.png" alt="">
         </div>
@@ -59,13 +59,13 @@ if (!$livrosParaExcluir) {
             </li>
 
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a class="nav-link" href="cadastro.php">
                     <i class="fas fa-plus-circle me-2"></i> Cadastro
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="editFunci.php">
+                <a class="nav-link active" href="#">
                     <i class="fas fa-pen me-2"></i> Editar Livros
                 </a>
             </li>
@@ -88,11 +88,11 @@ if (!$livrosParaExcluir) {
             <h2>Cadastro</h2>
         </div>
 
-        <div class="col g-4">
+        <div class="row g-4">
 
             <!-- NOVO AUTOR -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-lg">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Novo Autor</h5>
 
@@ -108,12 +108,11 @@ if (!$livrosParaExcluir) {
 
             <!-- NOVO LIVRO -->
             <div class="col-md-6">
-                <div class="card shadow-lg">
+                <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Novo Livro</h5>
 
-                        <form method="POST" action="../config/salvar_livro.php" enctype="multipart/form-data">
-
+                        <form method="POST" action="../config/salvar_livro.php">
                             <input class="form-control mb-3" type="text" name="titulo" placeholder="Título do Livro" required>
                             <input class="form-control mb-3" type="number" name="ano" placeholder="Ano de Publicação" required>
                             <input class="form-control mb-3" type="number" name="quantidade" min="1" value="1">
@@ -127,17 +126,34 @@ if (!$livrosParaExcluir) {
                                 <?php endwhile; ?>
                             </select>
 
-                            <div class="mb-3">
-
-                                <label class="form-label text-muted small">Imagens do Livro (Capas, Verso, etc.)</label>
-                                
-                                <input type="file" name="imagens[]" class="form-control" accept="image/*" multiple id="inputImagens">
-                                
-                                <div id="preview-container" class="d-flex flex-wrap gap-2 mt-2"></div>
-                            </div>
-
                             <button class="btn btn-success w-100">Cadastrar Livro</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REMOVER -->
+            <div class="col-12">
+                <div class="card shadow-sm border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title text-danger">Remover Registro</h5>
+
+                        <input class="form-control mb-3" type="text" id="busca_item" list="lista_itens" placeholder="Digite o título do livro...">
+
+                        <datalist id="lista_itens">
+                            <?php
+                            $livrosParaExcluir->data_seek(0);
+                            while ($l = $livrosParaExcluir->fetch_assoc()):
+                            ?>
+                                <option data-id="<?= $l['id_livro'] ?>" value="<?= $l['titulo'] ?>">
+                                <?php endwhile; ?>
+                        </datalist>
+
+                        <button onclick="executarExclusao()" class="btn btn-danger">
+                            Excluir Livro
+                        </button>
+
+                        <p id="mensagem-retorno" class="mt-3 fw-bold"></p>
                     </div>
                 </div>
             </div>
@@ -145,7 +161,8 @@ if (!$livrosParaExcluir) {
         </div>
     </div>
 
-    <script src="../assets/cadastro.js"></script>
+    <!-- JS -->
+    <script src="../assets/JS/cadastro.js"></script>
 </body>
 
 </html>

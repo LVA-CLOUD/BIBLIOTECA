@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    --font-primary:"Poppins", sans-serif;
+    --font-primary: "Poppins", sans-serif;
     --font-secondary: "Roboto", sans-serif;
 }
 
@@ -65,31 +66,43 @@
     transition: all 0.5s ease;
 }
 
+
+/*-------- Body -------*/
 body {
-    background-color: #f8f9fa;
+    background-color: #f9fafd;
+    color: #5e6e82;
+    margin: 0;
+    font-family: var(--font-primary);
 }
 
 /* Sidebar */
 .sidebar {
-    height: 100vh;
+    width: 15.625rem;
     position: fixed;
-    width: 240px;
-    background: #0b1727;
-    color: white;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #fff;
+    border-right: 1px solid #edf2f9;
+    z-index: 1000;
+    padding: 0.5rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.26);
+    font-weight: 500
 }
 
 .sidebar .nav-link {
-    color: #cbd5e1;
+    color: #5e6e82;
+    border-radius: 0.375rem;
 }
 
 .sidebar .nav-link:hover {
-    background: rgba(255,255,255,0.05);
-    color: #fff;
+    background-color: #f8f9fa;
+    color: #2c7be5;
 }
 
 .sidebar .nav-link.active {
-    background: #2c7be5;
-    color: #fff;
+    color: #2c7be5;
+    background-color: rgba(44, 123, 229, 0.08);
 }
 
 /* Conteúdo */
@@ -101,4 +114,30 @@ body {
 .card {
     border: none;
     border-radius: 12px;
+}
+
+.btn {
+    background-color: #2c7be5;
+    color: white;
+}
+
+.btn:hover {
+    color: white;
+    background-color: #276bc4;
+}
+
+.row-sair {
+    margin-top: 1.2rem;
+    border-bottom: 1px solid rgb(197, 197, 197);
+}
+
+.logo {
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img{
+    width: 80px;
 }

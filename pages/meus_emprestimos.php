@@ -14,10 +14,6 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id_regi);
 $stmt->execute();
 $result = $stmt->get_result();
-while($row = $result->fetch_assoc()) {
-    $livros[] = $row;
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -90,12 +86,13 @@ while($row = $result->fetch_assoc()) {
                                 </td>
 
                                 <td>
-                                    <?php foreach ($livros as $livro): ?>
-                                        <form method="POST" action="devolver.php">
-                                            <input type="hidden" name="id_livro" value="<?= $livro['id_livro'] ?>">
-                                            <button type="submit">Devolver <?= $livro['titulo'] ?></button>
-                                        </form>
-                                    <?php endforeach; ?>
+                                    <?php if ($row['status'] == 'aprovado'): ?>
+                                        <a class="btn-devolver" href="../config/devolver.php?id_livro=<?= $row['id_livro'] ?>">
+                                            Devolver
+                                        </a>
+                                    <?php else: ?>
+                                        ---
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

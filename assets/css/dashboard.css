@@ -1,0 +1,153 @@
+ body {
+     font-family: 'Poppins', sans-serif;
+     background-color: #f9fafd;
+     color: #5e6e82;
+     margin: 0;
+ }
+
+ /* Layout Sidebar */
+ .navbar-vertical {
+     width: 15.625rem;
+     position: fixed;
+     left: 0;
+     top: 0;
+     height: 100vh;
+     background: #fff;
+     border-right: 1px solid #edf2f9;
+     z-index: 1000;
+     padding: 0.5rem;
+     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.26);
+ }
+
+ /* Falcon */
+ .navbar-brand {
+     padding: 1.5rem;
+     font-weight: 800;
+     color: #2c7be5;
+     font-size: 1.5rem;
+     text-decoration: none;
+     display: block;
+     text-transform: lowercase;
+ }
+
+ /* Menu de Navegação */
+ .nav-link {
+     color: #5e6e82;
+     font-weight: 500;
+     padding: 0.6rem 1rem;
+     display: flex;
+     align-items: center;
+     text-decoration: none;
+     transition: all 0.2s;
+     border-radius: 0.375rem;
+     margin-bottom: 2px;
+ }
+
+ .nav-link:hover {
+     background-color: #f8f9fa;
+     color: #2c7be5;
+ }
+
+ .nav-link.active {
+     color: #2c7be5;
+     background-color: rgba(44, 123, 229, 0.08);
+ }
+
+ .nav-link i {
+     width: 25px;
+     font-size: 0.9rem;
+ }
+
+ .btn {
+     background-color: #2c7be5;
+     color: white;
+ }
+
+ .btn:hover {
+     color: white;
+     background-color: #276bc4;
+ }
+
+ .row-sair {
+     margin-top: 1.2rem;
+     border-bottom: 1px solid rgb(197, 197, 197);
+ }
+
+/* Logo athenas */
+ .logo {
+     margin-bottom: 1.2rem;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .logo img {
+     width: 80px;
+ }
+
+ /*--------- Conteúdo Principal ------------*/
+ .content {
+     margin-left: 15.625rem;
+     padding: 2.5rem;
+ }
+
+ /* Estilo dos Cards KPI */
+ .card-stats {
+     border: none;
+     border-radius: 0.6rem;
+     background: #fff;
+     box-shadow: 0 7px 14px 0 rgba(59, 65, 94, 0.05);
+     padding: 1.5rem;
+ }
+
+ .label-stats {
+     text-transform: uppercase;
+     font-size: 0.7rem;
+     font-weight: 700;
+     color: #9da9bb;
+     letter-spacing: 0.04em;
+     margin-bottom: 0.5rem;
+ }
+
+ .display-stats {
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: #344050;
+     display: block;
+ }
+
+ /* Tabela Estilizada */
+ .card-table {
+     border: none;
+     border-radius: 0.6rem;
+     box-shadow: 0 7px 14px 0 rgba(59, 65, 94, 0.05);
+     overflow: hidden;
+ }
+
+ .table thead th {
+     background-color: #f8f9fa;
+     text-transform: uppercase;
+     font-size: 0.65rem;
+     font-weight: 700;
+     color: #9da9bb;
+     padding: 1rem;
+     border: none;
+ }
+
+ .table tbody td {
+     padding: 1rem;
+     vertical-align: middle;
+     border-bottom: 1px solid #edf2f9;
+     color: #4d5969;
+ }
+
+ /* Badges Falcon Style */
+ .bg-soft-info {
+     background-color: #e5f1fd;
+     color: #2c7be5;
+ }
+
+ .bg-soft-success {
+     background-color: #ccf6e4;
+     color: #00864e;
+ }

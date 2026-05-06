@@ -14,10 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nivel_padrao = 1;
 
-    // Senha criptografada
+    // Criptografia da senha
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // 1. VERIFICAÇÃO de duplicidade
+    // Verifica duplicidade
     $sql_check = "SELECT id_regi FROM registro WHERE user_regi = ? OR email_regi = ?";
     $stmt_check = $conn->prepare($sql_check);
     $stmt_check->bind_param("ss", $user, $email);
@@ -30,18 +30,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($existe > 0) {
         $erro = "Usuário ou E-mail já cadastrados!";
     } else {
-        // 2. INSERÇÃO (Agora incluindo a coluna de nível)
-        // Ajuste 'id_nivel' para o nome exato da coluna na sua tabela
+
         $sql_ins = "INSERT INTO registro (nome_regi, user_regi, email_regi, senha_regi, id_nivel) VALUES (?, ?, ?, ?, ?)";
-
         $stmt_ins = $conn->prepare($sql_ins);
-
         $stmt_ins->bind_param("ssssi", $nome, $user, $email, $senhaHash, $nivel_padrao);
 
         if ($stmt_ins->execute()) {
-            unset($_SESSION['google_data']); // Limpa dados temporários
+
+            // ===== ENVIO DE EMAIL COM BREVO =====
+
+            $apiKey = "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";
+
+            $data = [
+                "sender" => [
+                    "name" => "Biblioteca-Athenas",
+                    "email" => "06luis.alves@gmail.com"
+                ],
+                "to" => [
+                    [
+                        "email" => $email,
+                        "name" => $nome
+                    ]
+                ],
+                "subject" => "Cadastro realizado com sucesso",
+                "htmlContent" => "
+                    <h2>Olá, $nome!</h2>
+                    <p>Seu cadastro foi realizado com sucesso.</p>
+                    <p>Agora você já pode acessar o sistema.</p>
+                "
+            ];
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, "https://api.brevo.com/v3/smtp/email");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                "accept: application/json",
+                "api-key: $apiKey",
+                "content-type: application/json"
+            ]);
+
+            $response = curl_exec($ch);
+            $erroCurl = curl_error($ch);
+            curl_close($ch);
+
+            // (opcional) debug
+             echo $response;
+             exit;
+
+           //  unset($_SESSION['google_data']);
             header("Location: login.php?cadastro=sucesso");
             exit;
+
         } else {
             $erro = "Erro ao registrar: " . $conn->error;
         }
@@ -87,36 +130,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php if (isset($erro)): ?>
                 <p style="color:red; font-weight:bold;"><?php echo $erro; ?></p>
             <?php endif; ?>
-                
-                <?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
 
-                <form method="POST" action="">
-                    <div class="form-group">
+            <?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
 
-                        <label>Nome</label>
-                        <input type="text" name="nome" value="<?php echo htmlspecialchars($nomePreenchido); ?>" required />
-                    </div>
+            <form method="POST" action="">
+                <div class="form-group">
 
-                    <div class="form-group">
-                        <label>Usuário</label>
-                        <input type="text" name="user" required />
-                    </div>
+                    <label>Nome</label>
+                    <input type="text" name="nome" value="<?php echo htmlspecialchars($nomePreenchido); ?>" required />
+                </div>
 
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email" value="<?php echo htmlspecialchars($emailPreenchido); ?>" required <?php echo !empty($emailPreenchido) ? 'readonly' : ''; ?> />
-                    </div>
+                <div class="form-group">
+                    <label>Usuário</label>
+                    <input type="text" name="user" required />
+                </div>
 
-                    <div class="form-group">
-                        <label>Senha</label>
-                        <input type="password" name="senha" required />
-                    </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" value="<?php echo htmlspecialchars($emailPreenchido); ?>" required <?php echo !empty($emailPreenchido) ? 'readonly' : ''; ?> />
+                </div>
 
-                    <button class="login-btn" type="submit">Cadastrar</button>
-                </form>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" required />
+                </div>
+
+                <button class="login-btn" type="submit">Cadastrar</button>
+            </form>
 
         </div>
-        
+
         <!-- Gsap -->
         <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
         <script src="https://unpkg.com/gsap@3/dist/Draggable.min.js"></script>
