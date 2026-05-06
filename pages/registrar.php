@@ -39,7 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // ===== ENVIO DE EMAIL COM BREVO =====
 
-            $apiKey = "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";
+            require_once("../config/env.php");
+
+            $apiKey = $BREVO_API_KEY;
 
             $data = [
                 "sender" => [
@@ -78,13 +80,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             curl_close($ch);
 
             // (opcional) debug
-             echo $response;
-             exit;
-
-           //  unset($_SESSION['google_data']);
-            header("Location: login.php?cadastro=sucesso");
+            echo $response;
             exit;
 
+            //  unset($_SESSION['google_data']);
+            header("Location: login.php?cadastro=sucesso");
+            exit;
         } else {
             $erro = "Erro ao registrar: " . $conn->error;
         }
