@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
-    --font-primary:"Poppins", sans-serif;
+    --font-primary: "Poppins", sans-serif;
     --font-secondary: "Roboto", sans-serif;
 }
 
-td a {
+.header h1 {
     font-family: var(--font-primary);
-    text-decoration: none;
+    font-size: 3em;
 }
 
-td .btn-ok {
-    color: rgb(1, 185, 1);
+.subTitulo {
+    font-family: var(--font-secondary);
+    font-weight: 500;
+    font-size: 2em;
 }
 
-td .btn-negativo {
-    color: red;
+.sessao-titulo {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+    border-left: 5px solid #3528a7;
+    padding-left: 10px;
 }
 
-td .btn-negativo:hover {
-    color: rgb(207, 1, 1);
-    transition: color 0.5s ease;
-}
-
-td .btn-ok:hover {
-    color: green;
-    transition: color 0.5s ease;
-}
-
-td {
-    background-color: #f5e6c8;
-    font-family: var(--font-primary);
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    background: #e3f2fd;
+    color: #0d47a1;
 }

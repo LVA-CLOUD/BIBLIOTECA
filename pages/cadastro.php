@@ -4,9 +4,21 @@ include_once("../config/conexao.php");
 
 // Autores
 $autores = $conn->query("SELECT * FROM autores ORDER BY nome");
+// Categorias
+$categoria = $_GET['categoria'] ?? null;
+
+$condicoes = [];
+$params = [];
+$tipos = "";
+
+if (!empty($categoria)) {
+    $condicoes[] = "l.categoria = ?";
+    $params[] = $categoria;
+    $tipos .= "s";
+}
 
 // Livros
-$sqlBuscaLivros = "SELECT id_livro, titulo FROM livros ORDER BY titulo";
+$sqlBuscaLivros = "SELECT id_livro, titulo, categoria FROM livros ORDER BY titulo";
 $livrosParaExcluir = $conn->query($sqlBuscaLivros);
 
 if (!$livrosParaExcluir) {
@@ -20,7 +32,7 @@ if (!$livrosParaExcluir) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cadastro - Biblioteca</title>
+    <title>Cadastro - Biblioteca Athenas</title>
 
     <!-- Bootstrap + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -81,69 +93,81 @@ if (!$livrosParaExcluir) {
     </div>
 
     <!-- CONTEÚDO -->
-    <div class="content p-4">
-
-        <!-- HEADER -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Cadastro</h2>
-        </div>
-
-        <div class="col g-4">
-
-            <!-- NOVO AUTOR -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-lg">
-                    <div class="card-body">
-                        <h5 class="card-title">Novo Autor</h5>
-
-                        <form method="POST" action="../config/salvar_autor.php">
-                            <input class="form-control mb-3" type="text" name="nome" placeholder="Nome do Autor" required>
-                            <input class="form-control mb-3" type="text" name="nacionalidade" placeholder="Nacionalidade" required>
-
-                            <button class="btn btn-primary w-100">Cadastrar Autor</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NOVO LIVRO -->
-            <div class="col-md-6">
-                <div class="card shadow-lg">
-                    <div class="card-body">
-                        <h5 class="card-title">Novo Livro</h5>
-
-                        <form method="POST" action="../config/salvar_livro.php" enctype="multipart/form-data">
-
-                            <input class="form-control mb-3" type="text" name="titulo" placeholder="Título do Livro" required>
-                            <input class="form-control mb-3" type="number" name="ano" placeholder="Ano de Publicação" required>
-                            <input class="form-control mb-3" type="number" name="quantidade" min="1" value="1">
-
-                            <select class="form-select mb-3" name="id_autor" required>
-                                <option value="">Selecione um autor</option>
-                                <?php while ($autor = $autores->fetch_assoc()): ?>
-                                    <option value="<?= $autor['id_autor'] ?>">
-                                        <?= $autor['nome'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-
-                            <div class="mb-3">
-
-                                <label class="form-label text-muted small">Imagens do Livro (Capas, Verso, etc.)</label>
-                                
-                                <input type="file" name="imagens[]" class="form-control" accept="image/*" multiple id="inputImagens">
-                                
-                                <div id="preview-container" class="d-flex flex-wrap gap-2 mt-2"></div>
-                            </div>
-
-                            <button class="btn btn-success w-100">Cadastrar Livro</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+     <main>
+         <div class="content p-4">
+     
+             <!-- HEADER -->
+             <div class="d-flex justify-content-between align-items-center mb-4">
+                 <h2>Cadastro</h2>
+             </div>
+     
+             <div class="col g-4">
+     
+                 <!-- NOVO AUTOR -->
+                 <div class="col-md-6 mb-4">
+                     <div class="card shadow-lg">
+                         <div class="card-body">
+                             <h5 class="card-title">Novo Autor</h5>
+     
+                             <form method="POST" action="../config/salvar_autor.php">
+                                 <input class="form-control mb-3" type="text" name="nome" placeholder="Nome do Autor" required>
+                                 <input class="form-control mb-3" type="text" name="nacionalidade" placeholder="Nacionalidade" required>
+     
+                                 <button class="btn btn-primary w-100">Cadastrar Autor</button>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+     
+                 <!-- NOVO LIVRO -->
+                 <div class="col-md-6">
+                     <div class="card shadow-lg">
+                         <div class="card-body">
+                             <h5 class="card-title">Novo Livro</h5>
+     
+                             <form method="POST" action="../config/salvar_livro.php" enctype="multipart/form-data">
+     
+                                 <input class="form-control mb-3" type="text" name="titulo" placeholder="Título do Livro" required>
+     
+                                 <select class="form-select mb-3" name="categoria">
+                                     <option value="">Categorias</option>
+                                     <option value="Terror" <?= ($categoria == "Terror") ? 'selected' : '' ?>>Terror</option>
+                                     <option value="Romance" <?= ($categoria == "Romance") ? 'selected' : '' ?>>Romance</option>
+                                     <option value="Suspense" <?= ($categoria == "Suspense") ? 'selected' : '' ?>>Suspense</option>
+                                     <option value="Ficção" <?= ($categoria == "Ficção") ? 'selected' : '' ?>>Ficção</option>
+                                 </select>
+     
+                                 <input class="form-control mb-3" type="number" name="ano" placeholder="Ano de Publicação" required>
+     
+                                 <select class="form-select mb-3" name="id_autor" required>
+                                     <option value="">Selecione um autor</option>
+                                     <?php while ($autor = $autores->fetch_assoc()): ?>
+                                         <option value="<?= $autor['id_autor'] ?>">
+                                             <?= $autor['nome'] ?>
+                                         </option>
+                                     <?php endwhile; ?>
+                                 </select>
+     
+                                 <label class="form-label text-muted small ms-1">Quantidade do Exemplar</label>
+                                 <input class="form-control mb-3" type="number" name="quantidade" min="1" value="1">
+     
+                                 <div class="mb-3">
+                                     <label class="form-label text-muted small ms-1">Formatos Aceitos (JPG, PNG, JPEG)</label>
+     
+                                     <input type="file" name="imagens[]" class="form-control" accept="image/*" multiple id="inputImagens">
+     
+                                     <div id="preview-container" class="d-flex flex-wrap gap-2 mt-2"></div>
+                                 </div>
+     
+                                 <button class="btn btn-success w-100">Cadastrar Livro</button>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+     
+             </div>
+         </div>
+     </main>
 
     <script src="../assets/cadastro.js"></script>
 </body>

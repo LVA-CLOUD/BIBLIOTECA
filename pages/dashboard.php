@@ -36,7 +36,7 @@ $rankingLivros = $conn->query($sqlRanking);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Biblioteca Falcon</title>
+    <title>Dashboard - Biblioteca Athenas</title>
 
     <!-- GSTATIC -->
     <link rel="preconnect" href="https://fonts.gstatic.com">

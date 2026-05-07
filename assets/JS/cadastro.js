@@ -1,5 +1,5 @@
 
-// Função para exibir o toast
+//---------- Função para exibir o toast
 function showToast(message, type = 'success') {
     const container = document.getElementById('toast-container');
 
@@ -35,7 +35,9 @@ window.onload = function () {
 }
 
 
-// Função para executar a exclusão do livro
+
+
+//---------- Função para executar a exclusão do livro
 function executarExclusao() {
     const input = document.getElementById('busca_item');
     const msg = document.getElementById('mensagem-retorno');
@@ -71,7 +73,9 @@ function executarExclusao() {
 }
 
 
-// Upload
+
+
+//--------------- Upload
 
 document.getElementById('inputImagens').addEventListener('change', function () {
     const container = document.getElementById('preview-container');

@@ -5,10 +5,11 @@ $titulo = $_POST['titulo'];
 $ano = $_POST['ano'];
 $id_autor = $_POST['id_autor'];
 $quantidade = $_POST['quantidade'];
+$categoria = $_POST['categoria'];
 
 // 1. Inserir o livro primeiro
-$stmt = $conn->prepare("INSERT INTO livros (titulo, ano_publicacao, id_autor, quantidade) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("siii", $titulo, $ano, $id_autor, $quantidade);
+$stmt = $conn->prepare("INSERT INTO livros (titulo, ano_publicacao, id_autor, categoria, quantidade) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("siisi", $titulo, $ano, $id_autor, $categoria, $quantidade);
 
 if ($stmt->execute()) {
     $id_livro = $conn->insert_id; // Pega o ID do livro que acabou de ser criado

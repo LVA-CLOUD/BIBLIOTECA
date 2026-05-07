@@ -66,24 +66,6 @@ body {
     margin-bottom: 20px;
 }
 
-
-/* CARDS */
-
-.card {
-    background: #f5e6c8;
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-left: 6px solid #8b6f47;
-}
-
-.card h2 {
-    margin-bottom: 15px;
-    font-family: 'Cinzel', serif;
-}
-
-
 /* FORM */
 
 .form {
