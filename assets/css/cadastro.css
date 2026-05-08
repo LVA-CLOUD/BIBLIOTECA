@@ -126,6 +126,14 @@ body {
     background-color: #276bc4;
 }
 
+.excluir {
+    background-color: #e01600;
+}
+
+.excluir:hover {
+    background-color: #c21300;
+}
+
 .row-sair {
     margin-top: 1.2rem;
     border-bottom: 1px solid rgb(197, 197, 197);

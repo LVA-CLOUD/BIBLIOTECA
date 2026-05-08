@@ -78,7 +78,7 @@ if (!$livrosParaExcluir) {
 
             <li class="nav-item">
                 <a class="nav-link" href="editFunci.php">
-                    <i class="fas fa-pen me-2"></i> Editar Livros
+                    <i class="fas fa-pen me-2"></i> Gerenciar
                 </a>
             </li>
         </ul>

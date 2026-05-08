@@ -2,36 +2,26 @@
 include("../config/verifica_funcionario.php");
 include_once("../config/conexao.php");
 
-// Autores
+// Busca Autores para o Select e Listagem
 $autores = $conn->query("SELECT * FROM autores ORDER BY nome");
 
-// Livros
+// Busca Livros para o Datalist de busca
 $sqlBuscaLivros = "SELECT id_livro, titulo FROM livros ORDER BY titulo";
-$livrosParaExcluir = $conn->query($sqlBuscaLivros);
-
-if (!$livrosParaExcluir) {
-    die("Erro na consulta de livros: " . $conn->error);
-}
+$livrosParaBusca = $conn->query($sqlBuscaLivros);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Editar Livros - Biblioteca Athenas</title>
-
-    <!-- Bootstrap + Icons -->
+    <title>Gerenciar Acervo - Biblioteca Athenas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/cadastro.css">
-
 </head>
-
 <body>
 
-    <!-- SIDEBAR -->
+<!-- SIDEBAR -->
     <div class="sidebar p-3">
         
         <div class="logo">
@@ -66,7 +56,7 @@ if (!$livrosParaExcluir) {
 
             <li class="nav-item">
                 <a class="nav-link active" href="#">
-                    <i class="fas fa-pen me-2"></i> Editar Livros
+                    <i class="fas fa-pen me-2"></i> Gerenciar
                 </a>
             </li>
         </ul>
@@ -80,89 +70,62 @@ if (!$livrosParaExcluir) {
         </div>
     </div>
 
-    <!-- CONTEÚDO -->
     <div class="content p-4">
-
-        <!-- HEADER -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Cadastro</h2>
+            <h2>Gerenciar Autores e Livros</h2>
         </div>
 
         <div class="row g-4">
-
-            <!-- NOVO AUTOR -->
+            <!-- EDITAR AUTOR -->
             <div class="col-md-6">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Novo Autor</h5>
+                        <h5 class="card-title text-primary"><i class="fas fa-user-edit"></i> Editar/Excluir Autor</h5>
+                        <p class="small text-muted">Selecione um autor para carregar os dados</p>
+                        
+                        <select class="form-select mb-3" id="select_autor" onchange="carregarDadosAutor(this.value)">
+                            <option value="">Selecione um autor...</option>
+                            <?php while ($a = $autores->fetch_assoc()): ?>
+                                <option value='<?= json_encode($a) ?>'><?= $a['nome'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
 
-                        <form method="POST" action="../config/salvar_autor.php">
-                            <input class="form-control mb-3" type="text" name="nome" placeholder="Nome do Autor" required>
-                            <input class="form-control mb-3" type="text" name="nacionalidade" placeholder="Nacionalidade" required>
-
-                            <button class="btn btn-primary w-100">Cadastrar Autor</button>
+                        <form method="POST" action="../config/atualizar_autor.php">
+                            <input type="hidden" name="id_autor" id="edit_id_autor">
+                            <input class="form-control mb-3" type="text" name="nome" id="edit_nome_autor" placeholder="Nome" required>
+                            <input class="form-control mb-3" type="text" name="nacionalidade" id="edit_nacionalidade" placeholder="Nacionalidade" required>
+                            
+                            <div class="d-flex gap-2">
+                                <button type="submit" name="action" value="update" class="btn btn-primary w-100">Salvar Alterações</button>
+                                <button type="submit" name="action" value="delete" class="btn excluir btn-outline-danger" onclick="return confirm('Excluir este autor permanentemente?')">Excluir</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
 
-            <!-- NOVO LIVRO -->
+            <!-- LIVRO PARA EDIÇÃO -->
             <div class="col-md-6">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Novo Livro</h5>
-
-                        <form method="POST" action="../config/salvar_livro.php">
-                            <input class="form-control mb-3" type="text" name="titulo" placeholder="Título do Livro" required>
-                            <input class="form-control mb-3" type="number" name="ano" placeholder="Ano de Publicação" required>
-                            <input class="form-control mb-3" type="number" name="quantidade" min="1" value="1">
-
-                            <select class="form-select mb-3" name="id_autor" required>
-                                <option value="">Selecione um autor</option>
-                                <?php while ($autor = $autores->fetch_assoc()): ?>
-                                    <option value="<?= $autor['id_autor'] ?>">
-                                        <?= $autor['nome'] ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-
-                            <button class="btn btn-success w-100">Cadastrar Livro</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- REMOVER -->
-            <div class="col-12">
-                <div class="card shadow-sm border-danger">
-                    <div class="card-body">
-                        <h5 class="card-title text-danger">Remover Registro</h5>
-
-                        <input class="form-control mb-3" type="text" id="busca_item" list="lista_itens" placeholder="Digite o título do livro...">
-
-                        <datalist id="lista_itens">
-                            <?php
-                            $livrosParaExcluir->data_seek(0);
-                            while ($l = $livrosParaExcluir->fetch_assoc()):
-                            ?>
+                        <h5 class="card-title text-success"><i class="fas fa-book"></i> Editar/Excluir Livro</h5>
+                        <p class="small text-muted">Busque pelo título para abrir a edição completa</p>
+                        
+                        <input class="form-control mb-3" list="lista_livros" id="input_busca_livro" placeholder="Digite o título...">
+                        <datalist id="lista_livros">
+                            <?php while ($l = $livrosParaBusca->fetch_assoc()): ?>
                                 <option data-id="<?= $l['id_livro'] ?>" value="<?= $l['titulo'] ?>">
-                                <?php endwhile; ?>
+                            <?php endwhile; ?>
                         </datalist>
 
-                        <button onclick="executarExclusao()" class="btn btn-danger">
-                            Excluir Livro
-                        </button>
-
-                        <p id="mensagem-retorno" class="mt-3 fw-bold"></p>
+                        <button type="button" onclick="abrirEdicaoLivro()" class="btn btn-success w-100">Editar Livro Selecionado</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- JS -->
-    <script src="../assets/JS/cadastro.js"></script>
-</body>
 
+    <script src="../assets/JS/editFunci.js"></script>
+</body>
 </html>

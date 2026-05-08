@@ -123,7 +123,7 @@ $result = $stmt->get_result();
 
                 <li class="nav-item">
                     <a class="nav-link" href="editFunci.php">
-                        <i class="fas fa-pen"></i> Editar Livros
+                        <i class="fas fa-pen"></i> Gerenciar
                     </a>
                 </li>
             </ul>

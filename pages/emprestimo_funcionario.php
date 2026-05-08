@@ -42,7 +42,7 @@ $resultAprovados = $conn->query($sqlAprovados);
 
 <body>
 
-    <!-- NAV (Mantida igual ao seu original) -->
+    <!-- NAV -->
     <nav class="navbar-vertical">
         <div class="logo"><img src="../assets/img/LOGOS/logoAthenas.png" alt=""></div>
         <div class="navbar-vertical-content">
@@ -51,7 +51,7 @@ $resultAprovados = $conn->query($sqlAprovados);
                 <li class="nav-item"><a class="nav-link" href="acervofuncionario.php"><i class="fas fa-book"></i> Acervo</a></li>
                 <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-exchange-alt"></i> Empréstimos</a></li>
                 <li class="nav-item"><a class="nav-link" href="cadastro.php"><i class="fas fa-plus-circle"></i> Cadastro</a></li>
-                <li class="nav-item"><a class="nav-link" href="editFunci.php"><i class="fas fa-pen"></i> Editar Livros</a></li>
+                <li class="nav-item"><a class="nav-link" href="editFunci.php"><i class="fas fa-pen"></i> Gerenciar</a></li>
             </ul>
             <div class="mt-4"><button onclick="window.location.href='../config/logout.php'" class="btn w-100">Sair</button></div>
         </div>
