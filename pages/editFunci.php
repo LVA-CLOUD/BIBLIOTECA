@@ -78,7 +78,7 @@ $livrosParaBusca = $conn->query($sqlBuscaLivros);
         <div class="row g-4">
             <!-- EDITAR AUTOR -->
             <div class="col-md-6">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-lg h-100">
                     <div class="card-body">
                         <h5 class="card-title text-primary"><i class="fas fa-user-edit"></i> Editar/Excluir Autor</h5>
                         <p class="small text-muted">Selecione um autor para carregar os dados</p>
@@ -106,9 +106,9 @@ $livrosParaBusca = $conn->query($sqlBuscaLivros);
 
             <!-- LIVRO PARA EDIÇÃO -->
             <div class="col-md-6">
-                <div class="card shadow-sm h-100">
+                <div class="card shadow-lg h-100">
                     <div class="card-body">
-                        <h5 class="card-title text-success"><i class="fas fa-book"></i> Editar/Excluir Livro</h5>
+                        <h5 class="card-title text-primary"><i class="fas fa-book"></i> Editar/Excluir Livro</h5>
                         <p class="small text-muted">Busque pelo título para abrir a edição completa</p>
                         
                         <input class="form-control mb-3" list="lista_livros" id="input_busca_livro" placeholder="Digite o título...">

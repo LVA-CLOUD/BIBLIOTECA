@@ -136,7 +136,7 @@ $fotos = $conn->query("SELECT * FROM livros_imagens WHERE id_livro = $id_livro O
                 <?php endif; ?>
             </div>
 
-            <button type="submit" name="update_livro" class="btn btn-success btn-lg w-100 mt-4">Salvar Todas as Alterações</button>
+            <button type="submit" name="update_livro" class="btn btn-primary btn-lg w-100 mt-4">Salvar Todas as Alterações</button>
         </form>
     </div>
 
