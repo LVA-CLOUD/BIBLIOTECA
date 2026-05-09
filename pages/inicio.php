@@ -39,7 +39,7 @@ $nome_exibicao = $dados_usuario['user_regi'];
 
         <nav>
             <ul>
-                <li>Início</li>
+                <li>Iníci</li>
                 <li>Livros</li>
                 <li>Agendamento</li>
                 <li>Contato</li>
