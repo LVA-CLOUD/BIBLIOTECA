@@ -226,7 +226,7 @@ $rankingLivros = $conn->query($sqlRanking);
 
                         <hr class="opacity-25">
 
-                        <a href="acervofuncionario.php" class="btn btn-sm btn-light w-100 fw-bold">Gerenciar Acervo</a>
+                        <a href="editFunci.php" class="btn btn-sm btn-light w-100 fw-bold">Gerenciar Acervo</a>
                     </div>
                 </div>
             </div>
