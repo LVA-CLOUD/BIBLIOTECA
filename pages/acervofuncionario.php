@@ -17,7 +17,10 @@ $sqlLivros = "SELECT
                 l.categoria, 
                 l.quantidade,
                 a.nome as nome_autor,
-                (SELECT COUNT(*) FROM emprestimos e WHERE e.id_livro = l.id_livro AND (e.data_devolucao >= CURDATE() OR e.data_devolucao IS NULL)) as total_emprestados
+                (SELECT COUNT(*) 
+                 FROM emprestimos e 
+                 WHERE e.id_livro = l.id_livro 
+                 AND e.status IN ('emprestado', 'aprovado')) as total_emprestados
               FROM livros l
               INNER JOIN autores a ON l.id_autor = a.id_autor";
 
@@ -179,7 +182,7 @@ $result = $stmt->get_result();
                     <div class="card h-100 border-0 shadow-lg position-relative">
                         <!-- Badge de Status -->
                         <div class="position-absolute top-0 end-0 m-3">
-                            <span class="badge <?= $esgotado ? 'bg-danger' : 'bg-success' ?> shadow-sm">
+                            <span class="badge <?= $esgotado ? 'bg-danger bg-gradient' : 'bg-success bg-gradient' ?> shadow-sm">
                                 <?= $esgotado ? 'Esgotado' : 'Disponível' ?>
                             </span>
                         </div>
@@ -211,10 +214,7 @@ $result = $stmt->get_result();
 
                         <div class="card-footer bg-white border-0 pb-3">
                             <?php if (!$esgotado): ?>
-                                <button class="btn btn-primary w-100 py-2"
-                                    onclick="abrirModal(<?= $livro['id_livro'] ?>, '<?= addslashes($livro['titulo']) ?>')">
-                                    <i class="fas fa-plus me-2"></i>Emprestar
-                                </button>
+                              
                             <?php else: ?>
                                 <button class="btn btn-secondary w-100 py-2" disabled>
                                     Indisponível
@@ -226,24 +226,6 @@ $result = $stmt->get_result();
             <?php endwhile; ?>
         </div>
     </main>
-
-    <!-- MODAL -->
-    <div id="modal" class="modal-container" style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); z-index: 9999; align-items: center; justify-content: center;">
-
-        <div class="bg-white p-4 rounded-4 shadow-lg text-center" style="max-width: 400px; width: 90%;">
-
-            <div class="mb-3"><i class="fas fa-book-reader fa-3x text-primary"></i></div>
-
-            <h4 id="modalTitulo" class="fw-bold"></h4>
-
-            <p class="text-muted">Deseja registrar o empréstimo de um exemplar deste livro?</p>
-
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4">
-                <button class="btn btn-success px-4" onclick="confirmarEmprestimo()">Confirmar</button>
-                <button class="btn btn-light px-4" onclick="fecharModal()">Cancelar</button>
-            </div>
-        </div>
-    </div>
 
     <!-- JS -->
     <script src="../assets/JS/acervoFunci.js"></script>

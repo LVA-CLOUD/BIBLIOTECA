@@ -1,9 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Uncial+Antiqua&display=swap');:root {
+/* =========================
+   IMPORTS E VARIÁVEIS
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&family=Uncial+Antiqua&display=swap');
+
+:root {
     --font-primary: "Poppins", sans-serif;
     --font-secondary: "Roboto", sans-serif;
     --font-terceira: "Uncial Antiqua", system-ui;
     --font-quarta: "EB Garamond", serif;
 }
+
+/* =========================
+   RESET
+========================= */
 
 * {
     margin: 0;
@@ -13,7 +23,12 @@
 
 body {
     background-color: #121417;
+    overflow-x: hidden;
 }
+
+/* =========================
+   NAVBAR
+========================= */
 
 nav {
     display: flex;
@@ -21,7 +36,6 @@ nav {
     justify-content: space-between;
 
     padding: 1vw 3.5vw;
-    /* border-bottom: 1px #ffffff solid; */
 }
 
 nav img {
@@ -42,118 +56,527 @@ nav ul {
 nav ul a {
     text-decoration: none;
     color: white;
+
     background-color: #9da2ff;
 
     padding: 0.6vw 1vw;
+
     border-radius: 0.4vw;
+
+    transition: 0.4s ease;
 }
 
 nav li:hover {
     color: #9da2ff;
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.192);
-    transition: all 0.6s ease;
 }
 
 nav ul a:hover {
     background-color: #8489e4;
     text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.562);
-    transition: all 0.6s ease;
 }
 
-/* Hero */
+/* =========================
+   HERO
+========================= */
 
 .hero {
     display: flex;
-    text-align: end;
-    color: white;
-}
+    align-items: center;
+    justify-content: space-between;
 
-.hero img {
-    padding-left: 8vw;
-    max-width: 42vw;
+    min-height: 100vh;
+
+    padding: 0 8%;
+
+    gap: 40px;
 }
 
 .titulo h1 {
     font-family: var(--font-terceira);
+
     padding-top: 5vw;
-    padding-right: 13vw;
+
     font-size: 6vw;
+
+    color: white;
 }
 
 .titulo p {
     font-family: var(--font-quarta);
-    padding-left: 10vw;
+
     padding-top: 1vw;
+
     font-size: 1.5vw;
+
     max-width: 77%;
+
+    color: #d8d8d8;
 }
 
-/* Container do Carrossel */
-.livros-carrossel {
-    overflow: hidden;
-    padding: 40px 0;
-    background: #f4f4f4; /* Ajuste conforme seu design */
-    white-space: nowrap;
-    position: relative;
-}
+/* =========================
+   QUEM SOMOS
+========================= */
 
-.carrossel-track {
-    display: inline-flex;
-    gap: 30px;
-    animation: rolar 20s linear infinite;
-}
-
-/* Animação de movimento lento */
-@keyframes rolar {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.livro-item {
-    width: 150px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.livro-item img {
+.quem-somos {
     width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    padding: 120px 8%;
+
+    background:
+        radial-gradient(circle at top left,
+            #0d1013,
+            #15181f 60%);
 }
 
-.livro-item:hover {
-    transform: scale(1.1);
-}
+/* BLOCO */
 
-/* Pausar ao passar o mouse */
-.livros-carrossel:hover .carrossel-track {
-    animation-play-state: paused;
-}
-
-/* Estilo do Modal (Sinopse) */
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8);
+.bloco {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    gap: 80px;
+
+    margin-bottom: 180px;
+}
+
+/* BLOCO INVERTIDO */
+
+.bloco.reverso {
+    flex-direction: row-reverse;
+}
+
+/* =========================
+   IMAGENS
+========================= */
+
+.imagem-box {
+    flex: 1;
+
+    display: flex;
     justify-content: center;
 }
 
-.modal-content {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
+/* AQUI ESTÁ O CONTROLE REAL DA IMAGEM */
+
+.imagem {
+    width: 125%;
+
+    max-width: 650px;
+
+    height: 420px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.4);
+
+    transition: 0.4s ease;
 }
 
-.close {
+.imagem:hover {
+    transform: scale(1.02);
+}
+
+/* =========================
+   TEXTO
+========================= */
+
+.texto-box {
+    flex: 1;
+
+    max-width: 550px;
+
+    color: white;
+}
+
+.texto-box h2 {
+    font-family: var(--font-terceira);
+
+    font-size: 3rem;
+
+    margin-bottom: 30px;
+
+    color: white;
+}
+
+/* LINHA DECORATIVA */
+
+.texto-box h2::after {
+    content: "";
+
+    display: block;
+
+    width: 80px;
+    height: 3px;
+
+    background: #9da2ff;
+
+    margin-top: 15px;
+}
+
+.texto-box p {
+    font-family: var(--font-quarta);
+
+    font-size: 1.2rem;
+
+    line-height: 2;
+
+    color: #d8d8d8;
+
+    margin-bottom: 22px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 992px) {
+
+    .bloco,
+    .bloco.reverso {
+        flex-direction: column;
+    }
+
+    .texto-box {
+        text-align: center;
+
+        max-width: 100%;
+    }
+
+    .texto-box h2 {
+        font-size: 2.3rem;
+    }
+
+    .texto-box h2::after {
+        margin: 15px auto 0;
+    }
+
+    .imagem {
+        max-width: 100%;
+
+        height: auto;
+    }
+
+    .bloco {
+        margin-bottom: 120px;
+    }
+
+    .titulo h1 {
+        font-size: 12vw;
+    }
+
+    .titulo p {
+        font-size: 4vw;
+        max-width: 100%;
+    }
+}
+
+h2 {
+    font-family: var(--font-terceira);
+
+    color: white;
+}
+p {
+    font-family: var(--font-quarta);
+
+    color: #d8d8d8;
+}
+
+
+
+/* =========================
+   INTRO PARTENON
+========================= */
+
+.intro {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    z-index: 99999;
+
+    background: black;
+}
+
+/* IMAGEM */
+
+.partenon {
     position: absolute;
-    right: 20px; top: 10px;
-    font-size: 28px;
-    cursor: pointer;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scale(1.2);
+}
+
+/* ESCURECIMENTO */
+
+.overlay {
+    position: auto;
+    text-align: left;
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0,0,0,0.4),
+            rgba(0,0,0,0.7));
+
+    z-index: 2;
+}
+
+/* PORTAS */
+
+.porta {
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(to right,
+            #1b140d,
+            #3a2a1c);
+
+    z-index: 5;
+}
+
+.porta-esquerda {
+    left: 0;
+
+    border-right:
+        2px solid rgba(255,255,255,0.08);
+}
+
+.porta-direita {
+    right: 0;
+
+    border-left:
+        2px solid rgba(255,255,255,0.08);
+}
+
+/* TEXTO */
+
+.intro-texto {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+
+    text-align: center;
+
+    color: white;
+}
+
+.intro-texto h1 {
+    font-family: var(--font-terceira);
+
+    font-size: 7rem;
+
+    letter-spacing: 10px;
+}
+
+.intro-texto p {
+    font-family: var(--font-quarta);
+
+    font-size: 1.4rem;
+
+    margin-top: 20px;
+
+    color: #d8d8d8;
+}
+
+/* ESCONDE SITE NO INÍCIO */
+
+header,
+main,
+.quem-somos {
+    opacity: 0;
+}
+/* =========================
+   INTRO 3D
+========================= */
+
+.intro {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    z-index: 999999;
+
+    background: black;
+}
+
+/* CENA 3D */
+
+.scene {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    perspective: 2000px;
+
+    transform-style: preserve-3d;
+}
+
+/* PARTENON */
+
+.partenon {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transform: scale(1.4);
+
+    filter:
+        brightness(0.5)
+        contrast(1.1);
+
+    z-index: 1;
+}
+
+/* OVERLAY ESCURO */
+
+.overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(circle at center,
+            rgba(255,255,255,0.03),
+            rgba(0,0,0,0.85));
+
+    z-index: 2;
+}
+
+/* NÉVOA */
+
+.fog {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        url("https://www.transparenttextures.com/patterns/foggy-birds.png");
+
+    opacity: 0.08;
+
+    animation: fogMove 15s linear infinite;
+
+    z-index: 3;
+}
+
+@keyframes fogMove {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-200px);
+    }
+}
+
+/* PORTAS */
+
+.door {
+    position: absolute;
+
+    top: 0;
+
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(to right,
+            #1b140d,
+            #3f2b1b);
+
+    z-index: 10;
+
+    transform-origin: center;
+}
+
+/* ESQUERDA */
+
+.left-door {
+    left: 0;
+
+    border-right:
+        3px solid rgba(255,255,255,0.05);
+}
+
+/* DIREITA */
+
+.right-door {
+    right: 0;
+
+    border-left:
+        3px solid rgba(255,255,255,0.05);
+}
+
+/* LOGO */
+
+.intro-logo {
+    position: absolute;
+
+    bottom: 40px;
+    left: 40px;
+
+    z-index: 20;
+
+    color: white;
+}
+
+.intro-logo h1 {
+    font-family: var(--font-terceira);
+
+    font-size: 4rem;
+
+    letter-spacing: 8px;
+}
+
+.intro-logo p {
+    font-family: var(--font-quarta);
+
+    margin-top: 10px;
+
+    color: #d8d8d8;
+
+    font-size: 1.1rem;
+}
+
+/* ESCONDE SITE */
+
+header,
+main,
+.quem-somos {
+    opacity: 0;
 }

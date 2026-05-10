@@ -10,6 +10,6 @@ function fecharModal() {
 }
 function confirmarEmprestimo() {
     if (livroSelecionado) {
-        window.location.href = "emprestar.php?id_livro=" + livroSelecionado;
+        window.location.href = "../config/emprestar.php?id_livro=" + livroSelecionado;
     }
 }

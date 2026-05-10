@@ -4,12 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Athenas</title>
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/index.css">
-    <title>Livraria Athenas</title>
+
 </head>
 
-<body>
+<<body>
+
+<!-- INTRO CINEMATOGRÁFICA -->
+
+<div class="intro">
+
+    <!-- SOM -->
+    <audio id="doorSound" src="./assets/audio/door.mp3"></audio>
+
+    <!-- CENA 3D -->
+    <div class="scene">
+
+        <!-- FUNDO -->
+        <img src="./assets/img/partenon.png" class="partenon">
+
+        <!-- ESCURIDÃO -->
+        <div class="overlay"></div>
+
+        <!-- NÉVOA -->
+        <div class="fog"></div>
+
+        <!-- PORTAS -->
+        <div class="door left-door"></div>
+        <div class="door right-door"></div>
+
+    </div>
+
+    <!-- TEXTO -->
+    <div class="intro-logo">
+        <h1>ATHENAS</h1>
+        <p>O conhecimento atravessa séculos.</p>
+    </div>
+
+</div>
 
     <header>
 
@@ -18,9 +52,10 @@
 
             <ul>
                 <li>Inicio</li>
+                <li>Sobre</li>
                 <li>Livros</li>
                 <li>Contato</li>
-                <li>Sobre</li>
+                <li>Agendamento</li>
                 <a href="./pages/login.php">Login</a>
             </ul>
 
@@ -35,114 +70,77 @@
             <img src="./assets/img/mulherSentada.png" alt="">
 
             <div class="titulo">
-                <h1>AthenaS</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum dignissimos aliquid consequatur possimus eos temporibus expedita fugiat vitae beatae architecto? Temporibus quo dolore officiis natus dolores maiores perspiciatis asperiores doloribus!</p>
+                <h1 class="reveal-subtext">AthenaS</h1>
+                <p class="reveal-subtext">Sua biblioteca clássica no mundo digital. <br> Explore o conhecimento dos antigos com a tecnologia do futuro.</p>
             </div>
         </section>
-
-        <!-- Carrossel -->
-        <section class="livros-carrossel">
-            <div class="carrossel-track">
-                <!-- Os itens se repetem para criar o efeito infinito -->
-                <div class="livro-item" onclick="abrirSinopse('harry potter', 'A história de Bentinho e a dúvida eterna sobre Capitu.', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/horaEstrela.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('1984', 'Um futuro distópico onde o Grande Irmão tudo vê.', './assets/img/livro2.jpg')">
-                    <img src="./assets//img/LIVROS/picapauAmarelo.png" alt="Livro 2">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('O Hobbit', 'A aventura de Bilbo Bolseiro pela Terra Média.', './assets/img/livro3.jpg')">
-                    <img src="./assets//img/LIVROS/Hobbit.png" alt="Livro 3">
-                </div>
-                <!-- Repita os itens para preencher o espaço e o loop ser invisível -->
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('Dom Casmurro', '...', './assets/img/livro1.jpg')">
-                    <img src="./assets//img/LIVROS/livroVidasSecas.png" alt="Livro 1">
-                </div>
-
-                <div class="livro-item" onclick="abrirSinopse('1984', '...', './assets/img/livro2.jpg')">
-                    <img src="./assets/img/livro2.jpg" alt="Livro 2">
-                </div>
-            </div>
-        </section>
-
-        <!-- Modal de Sinopse -->
-        <div id="modal-sinopse" class="modal" onclick="fecharModal()">
-            <div class="modal-content" onclick="event.stopPropagation()">
-                <span class="close" onclick="fecharModal()">&times;</span>
-                <h2 id="modal-titulo">Título do Livro</h2>
-                <p id="modal-texto">Sinopse aqui...</p>
-            </div>
-        </div>
-
     </main>
 
-    <!-- JS -->
+    <section class="quem-somos py-5">
+        <div class="container">
+
+            <!-- BLOCO 1 -->
+            <div class="row align-items-center bloco mb-5">
+
+                <img src="./assets/img/LOGOS/atenas.jpg" class="imagem">
+
+                <div class="col-md-6 text-white" data-aos="fade-left">
+
+                    <h2 class="titulo-bloco">
+                        O Legado de Atenas
+                    </h2>
+
+                    <p>
+                        A <strong>Biblioteca Atenas</strong> foi inspirada na antiga cidade
+                        de <strong>Atenas, na Grécia</strong>, conhecida como o berço da filosofia,
+                        da inteligência e dos grandes pensadores da humanidade.
+                    </p>
+
+                    <p>
+                        Foi nesse cenário que nomes como <strong>Sócrates, Platão e Aristóteles</strong>
+                        transformaram o conhecimento em algo capaz de atravessar gerações.
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- BLOCO 2 -->
+            <div class="row align-items-center bloco">
+
+                <div class="col-md-6 order-md-1 text-white" data-aos="fade-right">
+
+                    <h2 class="titulo-bloco">
+                        Conhecimento que Inspira
+                    </h2>
+
+                    <p>
+                        Mais do que uma biblioteca, este espaço representa aprendizado,
+                        descoberta e evolução, mantendo viva a essência de Atenas:
+                        um lugar onde ideias, livros e conhecimento transformam pessoas.
+                    </p>
+
+                    <p>
+                        Cada ambiente foi pensado para incentivar a curiosidade,
+                        a reflexão e o amor pela leitura.
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 order-md-2" data-aos="fade-left">
+
+                    <img src="./assets/img/LOGOS/atenasantigamente.jpg"
+                        class="img-fluid rounded shadow-lg imagem">
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="./assets/JS/index.js"></script>
 
-</body>
+    </body>
 
 </html>

@@ -35,57 +35,56 @@ $nome_exibicao = $dados_usuario['user_regi'];
 </head>
 
 <body>
-    <header>
+    <section class="slider">
+        <header>
 
-        <nav>
-            <ul>
-                <li>Início</li>
-                <li>Livros</li>
-                <li>Agendamento</li>
-                <li>Contato</li>
-                <li><i class="bi bi-search"></i></li>
+            <nav>
+                <ul>
+                    <li>Início</li>
+                    <li>Livros</li>
+                    <li>Agendamento</li>
+                    <li>Contato</li>
+                    <li><i class="bi bi-search"></i></li>
 
-            </ul>
-        </nav>
+                </ul>
+            </nav>
 
-        <img src="../assets/img/LOGOS/logo1.png" alt="Logo">
+            <img src="../assets/img/LOGOS/logo1.png" alt="Logo">
 
 
-        <!-- Offcanvas -->
-        <div class="offoff">
+            <!-- Offcanvas -->
+            <div class="offoff">
 
-            <button class="btn-open btn-icon" onclick="toggleOffcanvas()"><i class="bi bi-person-fill"></i></button>
+                <button class="btn-open btn-icon" onclick="toggleOffcanvas()"><i class="bi bi-person-fill"></i></button>
 
-            <div id="offcanvasBackdrop" class="offcanvas-backdrop" onclick="triggerStaticAnimation()"></div>
+                <div id="offcanvasBackdrop" class="offcanvas-backdrop" onclick="triggerStaticAnimation()"></div>
 
-            <div id="myOffcanvas" class="offcanvas-container">
+                <div id="myOffcanvas" class="offcanvas-container">
 
-                <div class="offcanvas-header">
+                    <div class="offcanvas-header">
 
-                    <h3>Olá, <?= htmlspecialchars($nome_exibicao); ?>!</h3>
+                        <h3>Olá, <?= htmlspecialchars($nome_exibicao); ?>!</h3>
 
-                    <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
+                        <button class="btn-close" onclick="toggleOffcanvas()">&times;</button>
+                    </div>
+
+                    <div class="offcanvas-body">
+                        <a href="acervocliente.php">Acervo</a>
+                        <a href="meus_emprestimos.php">meus emprestimos</a>
+                        <a href="#">Clients</a>
+                        <a href="#">Contact</a>
+                    </div>
+
+                    <div class="logout">
+                        <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
+                    </div>
                 </div>
-
-                <div class="offcanvas-body">
-                    <a href="meus_emprestimos.php">meus emprestimos</a>
-                    <a href="acervocliente.php">Acervo</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
-                </div>
-
-                <div class="logout">
-                    <button onclick="window.location.href='../config/logout.php'" class="btn-logout-sidebar">Sair</button>
-                </div>
+                </ul>
             </div>
-            </ul>
-        </div>
 
+        </header>
 
-    </header>
-
-    <main>
-        <section class="slider">
+        <main>
 
             <div class="slider-content ativo">
                 <img class="AlgoRelacionado" src="../assets/img/LIVROS/livroVidasSecas2.png" alt="Vidas Secas">
@@ -186,13 +185,107 @@ $nome_exibicao = $dados_usuario['user_regi'];
                 </div>
             </div>
 
-        </section>
+    </section>
+
+    <!-- Livros Destaques -->
+
+    <section class="section2">
+        <h2>Destaque da Semana</h2>
+
+        <!-- Este container será o 'gatilho' e o que transborda -->
+        <div class="scroll-container">
+
+            <div class="scroll-content">
+
+                <div class="item">
+                    <div class="card">
+                        <img src="../assets/img/LIVROS/pedraFilosofal.png" alt="Harry Potter">
+                        <div class="desc">
+                            <h4>Harry Potter e a Pedra Filosofal</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit deleniti non odit soluta et, neque laboriosam facilis dolores odio eius, cum explicabo pariatur minus ad alias laudantium quidem dicta nostrum.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="card">
+                        <img src="../assets/img/LIVROS/livroVidasSecas.png" alt="Livro 2">
+                        <div class="desc">
+                            <h4>Vidas Secas</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit deleniti non odit soluta et, neque laboriosam facilis dolores odio eius, cum explicabo pariatur minus ad alias laudantium quidem dicta nostrum.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="card">
+                        <img src="../assets/img/LIVROS/picapauAmarelo.png" alt="Livro 2">
+                        <div class="desc">
+                            <h4>Pica-Pau Amarelo</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit deleniti non odit soluta et, neque laboriosam facilis dolores odio eius, cum explicabo pariatur minus ad alias laudantium quidem dicta nostrum.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="card">
+                        <img src="../assets/img/LIVROS/guerraTronos.png" alt="Livro 2">
+                        <div class="desc">
+                            <h4>A Guerra dos Tronos</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit deleniti non odit soluta et, neque laboriosam facilis dolores odio eius, cum explicabo pariatur minus ad alias laudantium quidem dicta nostrum.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="card">
+                        <img src="../assets/img/LIVROS/hobbit.png" alt="Livro 2">
+                        <div class="desc">
+                            <h4>O Hobbit</h4>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit deleniti non odit soluta et, neque laboriosam facilis dolores odio eius, cum explicabo pariatur minus ad alias laudantium quidem dicta nostrum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
+    <div>.</div>
     </main>
 
     <!-- Gsap -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/SplitText.min.js"></script>
+    <!-- Lenis -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <!-- JS -->
     <script src="../assets/js/inicio.js"></script>
     <script src="../assets/js/nav.js"></script>
