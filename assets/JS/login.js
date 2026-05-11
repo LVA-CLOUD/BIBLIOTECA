@@ -116,11 +116,11 @@ function Login() {
             }
             else if (resposta === "Funcionario") {
                 // Redireciona nível 2 (Funcionário) para a página solicitada
-                window.location.href = "../pages/cadastro.php";
+                window.location.href = "../pages/dashboard.php";
             }
             else if (resposta === "Comum") {
                 // Redireciona nível 1 (Comum)
-                window.location.href = "inicio.php";
+                window.location.href = "../pages/inicio.php";
             }
             else {
                 // Exibe "Senha incorreta!" ou outro erro vindo do PHP
