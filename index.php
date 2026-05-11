@@ -45,11 +45,10 @@
             <img src="./assets/img/LOGOS/logo1.png" alt="Logo">
 
             <ul>
-                <li>Inicio</li>
-                <li>Sobre</li>
-                <li>Livros</li>
-                <li>Agendamento</li>
-                <li>Contato</li>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#agendamento">Agendamento</a></li>
+                <li><a href="#contato">Contato</a></li>
                 <a href="./pages/login.php">Login</a>
             </ul>
 
@@ -59,7 +58,7 @@
 
     <main>
         <!-- Hero -->
-        <section class="hero">
+        <section class="hero" id="inicio">
 
             <img src="./assets/img/mulherSentada.png" alt="">
 
@@ -71,7 +70,7 @@
     </main>
 
     <!-- ====================== QUEM SOMOS (Alternado) ====================== -->
-    <section class="quem-somos py-5" style="background: #0a0805;">
+    <section id="sobre" class="quem-somos py-5" style="background: #0a0805;">
         <div class="container">
 
             <!-- BLOCO 1: Imagem Esquerda | Texto Direito -->
@@ -124,7 +123,7 @@
     </section>
 
     <!-- ====================== SOBRE A BIBLIOTECA ====================== -->
-    <section class="sobre-biblioteca py-5" style="background: #0f0c08;">
+    <section id="agendamento" class="sobre-biblioteca py-5" style="background: #0f0c08;">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="titulo-bloco text-white" style="color: var(--gold);">Sobre a Biblioteca Athenas</h2>
@@ -176,7 +175,7 @@
         </div>
     </section>
 
-    <!-- ====================== NOSSOS LIVROS ====================== -->
+    <!-- ====================== LIVROS EM DESTAQUE (CORRIGIDO) ====================== -->
     <section class="livros py-5" style="background: #000;">
         <div class="container">
             <div class="text-center mb-5">
@@ -185,67 +184,50 @@
             </div>
 
             <div class="row g-4" id="livros-container">
-                <!-- Cards serão gerados dinamicamente ou colocados manualmente -->
+                <?php
+                include_once("./config/conexao.php");
 
-                <!-- Exemplo de Card 1 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card livro-card h-100 bg-dark text-white border-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1544947958-8d3f2c0f6f3e?q=80&w=800" class="card-img-top" alt="A República">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">A República</h5>
-                            <p class="card-text text-white-50 small">Platão</p>
-                            <span class="badge bg-warning text-dark mb-3">ID: <strong>001</strong></span>
-                            <a href="#" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
+                // Consulta que busca Livro + Autor + Imagem Principal
+                $sql = "SELECT l.*, a.nome AS nome_autor, img.caminho 
+                        FROM livros l 
+                        LEFT JOIN autores a ON l.id_autor = a.id_autor 
+                        LEFT JOIN livros_imagens img ON l.id_livro = img.id_livro AND img.principal = 1
+                        WHERE l.destaque = 1 
+                        ORDER BY l.id_livro DESC LIMIT 4";
 
-                <!-- Exemplo de Card 2 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card livro-card h-100 bg-dark text-white border-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=800" class="card-img-top" alt="Poética">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Poética</h5>
-                            <p class="card-text text-white-50 small">Aristóteles</p>
-                            <span class="badge bg-warning text-dark mb-3">ID: <strong>042</strong></span>
-                            <a href="#" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
+                $resultado = $conn->query($sql);
 
-                <!-- Exemplo de Card 3 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card livro-card h-100 bg-dark text-white border-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800" class="card-img-top" alt="Odisseia">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Odisseia</h5>
-                            <p class="card-text text-white-50 small">Homero</p>
-                            <span class="badge bg-warning text-dark mb-3">ID: <strong>127</strong></span>
-                            <a href="#" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
-                        </div>
-                    </div>
-                </div>
+                if ($resultado && $resultado->num_rows > 0) {
+                    while ($livro = $resultado->fetch_assoc()) {
+                        // Se o caminho estiver vazio no banco, usa imagem padrão
+                        $caminhoFinal = !empty($livro['caminho']) ? $livro['caminho'] : 'assets/img/livros/id_livro_img';
+                ?>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card livro-card h-100 bg-dark text-white border-0 overflow-hidden">
+                                <!-- O src aponta direto para o caminho salvo no banco -->
+                                <img src="./<?= $caminhoFinal ?>" class="card-img-top" style="height: 350px; object-fit: cover;" alt="<?= htmlspecialchars($livro['titulo']) ?>">
 
-                <!-- Exemplo de Card 4 -->
-                <div class="col-md-6 col-lg-3">
-                    <div class="card livro-card h-100 bg-dark text-white border-0 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=800" class="card-img-top" alt="Meditações">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">Meditações</h5>
-                            <p class="card-text text-white-50 small">Marco Aurélio</p>
-                            <span class="badge bg-warning text-dark mb-3">ID: <strong>089</strong></span>
-                            <a href="#" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?= htmlspecialchars($livro['titulo']) ?></h5>
+                                    <p class="card-text text-white-50 small"><?= htmlspecialchars($livro['nome_autor']) ?></p>
+                                    <span class="badge bg-warning text-dark mb-3 w-50">ID: <?= str_pad($livro['id_livro'], 3, "0", STR_PAD_LEFT) ?></span>
+                                    <a href="login" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo "<p class='text-white text-center w-100'>Nenhum livro em destaque no momento.</p>";
+                }
+                ?>
             </div>
 
             <div class="text-center mt-5">
-                <a href="./pages/livros.php" class="btn btn-lg btn-outline-gold">Ver Todos os Livros</a>
+                <a href="./pages/login.php" class="btn btn-lg btn-outline-gold">Ver Todos os Livros</a>
             </div>
         </div>
     </section>
-
     <!-- ====================== AGENDAMENTO ====================== -->
     <section class="agendamento py-5" style="background: linear-gradient(#1c160f, #000);">
         <div class="container">
@@ -291,7 +273,7 @@
     </section>
 
     <!-- ====================== RODAPÉ ====================== -->
-    <footer class="bg-black text-white py-5 border-top border-gold border-opacity-10">
+    <footer id="contato" class="bg-black text-white py-5 border-top border-gold border-opacity-10">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
@@ -303,19 +285,19 @@
                 <div class="col-md-4 mb-4">
                     <h5 class="text-gold">Contato</h5>
                     <ul class="list-unstyled small">
-                        <li class="mb-2">📧 <a href="mailto:contato@bibliotecaathenas.com" class="text-white-50">contato@bibliotecaathenas.com</a></li>
+                        <li class="mb-2">📧 <a href="mailto:testesenac1104@gmail.com" class="text-white-50">contato@bibliotecaathenas.com</a></li>
                         <li class="mb-2">📱 <a href="https://wa.me/5511999999999" target="_blank" class="text-white-50">(11) 99999-9999</a></li>
-                        <li class="mb-2">📍 Rua da Filosofia, 42 - São Paulo, SP</li>
+                        <li class="mb-2">📍 Rua Saigiro Nakamura 400, São José dos Campos, SP</li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 mb-4">
                     <h5 class="text-gold">Links Rápidos</h5>
                     <ul class="list-unstyled small">
-                        <li><a href="#" class="text-white-50">Catálogo Completo</a></li>
-                        <li><a href="#" class="text-white-50">Eventos e Debates</a></li>
+                        <li><a href="./pages/atualizaçao.php" class="text-white-50">Catálogo Completo</a></li>
+                        <li><a href="./pages/atualizaçao.php" class="text-white-50">Eventos e Debates</a></li>
                         <li><a href="./pages/login.php" class="text-white-50">Área do Leitor</a></li>
-                        <li><a href="#" class="text-white-50">Política de Privacidade</a></li>
+                        <li><a href="./pages/atualizaçao.php" class="text-white-50">Política de Privacidade</a></li>
                     </ul>
                 </div>
             </div>
@@ -359,10 +341,39 @@
         }
     </style>
 
-    <script>
-        // Você pode adicionar aqui scripts adicionais para os novos cards se quiser carregar via JS do banco
-    </script>
 
+    <script>
+        document.querySelectorAll('.btn-destaque').forEach(switchEl => {
+            switchEl.addEventListener('change', function() {
+                const idLivro = this.getAttribute('data-id');
+                const status = this.checked ? 1 : 0;
+
+                // Efeito visual de carregamento (opcional)
+                this.style.opacity = '0.5';
+
+                fetch('../config/atualizar_destaque.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `id_livro=${idLivro}&destaque=${status}`
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        this.style.opacity = '1';
+                        if (data.trim() !== "Sucesso") {
+                            alert("Erro ao atualizar destaque!");
+                            this.checked = !this.checked; // Reverte se der erro
+                        }
+                    })
+                    .catch(error => {
+                        this.style.opacity = '1';
+                        console.error('Erro:', error);
+                        this.checked = !this.checked;
+                    });
+            });
+        });
+    </script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>

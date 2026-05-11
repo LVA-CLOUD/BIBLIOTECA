@@ -16,6 +16,7 @@ $sqlLivros = "SELECT
                 l.ano_publicacao, 
                 l.categoria, 
                 l.quantidade,
+                l.destaque,
                 a.nome as nome_autor,
                 (SELECT COUNT(*) 
                  FROM emprestimos e 
@@ -209,12 +210,27 @@ $result = $stmt->get_result();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> <!-- Fim da parte de estoque -->
 
+                            <!-- COLOQUE O CÓDIGO DO DESTAQUE AQUI -->
+                            <div class="mt-3 border-top pt-3">
+                                <div class="form-check form-switch d-flex justify-content-between align-items-center">
+                                    <label class="form-check-label small fw-bold text-muted" for="destaque<?= $livro['id_livro'] ?>">
+                                        Destaque no Index
+                                    </label>
+                                    <input class="form-check-input btn-destaque"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="destaque<?= $livro['id_livro'] ?>"
+                                        data-id="<?= $livro['id_livro'] ?>"
+                                        <?= (isset($livro['destaque']) && $livro['destaque'] == 1) ? 'checked' : '' ?>>
+                                </div>
+                            </div>
+
+                        </div> <!-- Este é o fechamento da card-body pt-5 -->
                         <div class="card-footer bg-white border-0 pb-3">
                             <?php if (!$esgotado): ?>
-                              
+
                             <?php else: ?>
                                 <button class="btn btn-secondary w-100 py-2" disabled>
                                     Indisponível
@@ -229,6 +245,32 @@ $result = $stmt->get_result();
 
     <!-- JS -->
     <script src="../assets/JS/acervoFunci.js"></script>
+
+    <script>
+        document.querySelectorAll('.btn-destaque').forEach(switchEl => {
+            switchEl.addEventListener('change', function() {
+                const idLivro = this.getAttribute('data-id');
+                const status = this.checked ? 1 : 0;
+
+                // Faz a mágica acontecer nos bastidores
+                fetch('../config/atualizar_destaque.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `id_livro=${idLivro}&destaque=${status}`
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        if (data.trim() !== "Sucesso") {
+                            alert("Houve um erro ao salvar o destaque.");
+                            this.checked = !this.checked; // Volta o botão se deu erro
+                        }
+                    });
+            });
+        });
+    </script>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

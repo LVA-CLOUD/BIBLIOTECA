@@ -108,22 +108,23 @@ function Login() {
     })
         .then(response => response.text())
         .then(data => {
-
             const resposta = data.trim();
 
-            if (resposta === "Login Funcionario") {
-                // Redireciona para a pasta principal/cadastro
-                window.location.href = "dashboard.php";
-            } else if (resposta === "Login Comum") {
-                // Redireciona para a pasta de início
+            if (resposta === "ADM") {
+                // Redireciona nível 3 (ADM)
+                window.location.href = "../pages/cadastroadm.php";
+            }
+            else if (resposta === "Funcionario") {
+                // Redireciona nível 2 (Funcionário) para a página solicitada
+                window.location.href = "../pages/cadastro.php";
+            }
+            else if (resposta === "Comum") {
+                // Redireciona nível 1 (Comum)
                 window.location.href = "inicio.php";
-            } else {
-                // Exibe o erro vindo do PHP (Senha incorreta, etc)
+            }
+            else {
+                // Exibe "Senha incorreta!" ou outro erro vindo do PHP
                 alert(resposta);
             }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-            alert("Erro na conexão com o servidor.");
-        });
-}
+        }
+)}

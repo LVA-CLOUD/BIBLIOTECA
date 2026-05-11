@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# 1. Remover a extensão .php da URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\/]+)/?$ $1.php [L]
+
+# 2. Se o arquivo estiver dentro da pasta /pages, permitir acesso direto sem digitar "pages"
+# Exemplo: meusite.com/login em vez de meusite.com/pages/login
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/pages/$1.php -f
+RewriteRule ^([^\/]+)/?$ pages/$1.php [L]
+
+# 3. Impedir que as pessoas vejam as pastas de sistema (opcional)
+Options -Indexes

@@ -25,11 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id_usuario'] = $user['id_regi'];
             $_SESSION['id_nivel'] = $user['id_nivel'];
 
-            // para informar o js quem é quem e ser direcionado
-            if ($user['id_nivel'] == 2) {
-                echo "Login Funcionario";
+            // Retorna um texto simples para o JavaScript processar
+            if ($user['id_nivel'] == 3) {
+                echo "ADM";
+            } elseif ($user['id_nivel'] == 2) {
+                echo "Funcionario";
             } else {
-                echo "Login Comum";
+                echo "Comum";
             }
             exit;
         } else {

@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             curl_close($ch);
 
             // (opcional) debug
-            echo $response;
+            header("Location: login.php");
             exit;
 
             //  unset($_SESSION['google_data']);

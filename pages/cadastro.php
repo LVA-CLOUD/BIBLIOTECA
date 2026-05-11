@@ -142,7 +142,10 @@ if (!$livrosParaExcluir) {
 
                                     <div id="preview-container" class="d-flex flex-wrap gap-2 mt-2"></div>
                                 </div>
-
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" name="destaque" id="flexSwitchCheckDefault" value="1">
+                                    <label class="form-check-label text-white" for="flexSwitchCheckDefault">Exibir este livro no Index (Destaque)</label>
+                                </div>
                                 <button class="btn btn-success w-100">Cadastrar Livro</button>
                             </form>
                         </div>
@@ -167,6 +170,7 @@ if (!$livrosParaExcluir) {
             </div>
         </div>
     </main>
+
 
     <script src="../assets/cadastro.js"></script>
 </body>
