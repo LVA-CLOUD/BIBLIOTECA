@@ -21,19 +21,7 @@ function abrirSinopse(titulo, sinopse) {
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* SOM */
 
-window.addEventListener("load", () => {
-
-    const sound = document.getElementById("doorSound");
-
-    sound.volume = 0.6;
-
-    setTimeout(() => {
-        sound.play();
-    }, 1200);
-
-});
 
 /* TIMELINE */
 
@@ -109,3 +97,123 @@ tl.from(".intro-logo", {
         document.querySelector(".intro").remove();
     }
 });
+
+const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height * (Math.random() * 0.8 + 0.2);
+            this.size = Math.random() * 3.5 + 1.2;
+            this.speedX = Math.random() * 1.2 - 0.6;
+            this.speedY = -Math.random() * 2.2 - 0.6; // sobe
+            this.opacity = Math.random() * 0.7 + 0.3;
+            this.life = Math.random() * 180 + 120;
+            this.hue = Math.random() * 12 + 38; // tons de dourado/âmbar
+            this.glow = Math.random() > 0.7 ? 15 : 8;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.speedY -= 0.012; // acelera para cima (leveza)
+            this.speedX *= 0.985;
+            this.opacity -= 0.0035;
+            this.life--;
+            if (this.life <= 0 || this.opacity <= 0) this.reset();
+        }
+
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            ctx.shadowBlur = this.glow;
+            ctx.shadowColor = `hsl(${this.hue}, 90%, 75%)`;
+
+            ctx.fillStyle = `hsl(${this.hue}, 95%, 85%)`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Brilho extra no centro
+            if (this.size > 2.5) {
+                ctx.shadowBlur = 25;
+                ctx.fillStyle = 'rgba(255, 240, 180, 0.6)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+    }
+
+    function createParticles(count) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Desenhar partículas de trás para frente (melhor profundidade)
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+        }
+
+        requestAnimationFrame(animateParticles);
+    }
+
+    // ====================== ANIMAÇÃO PRINCIPAL ======================
+    window.onload = function() {
+        resizeCanvas();
+        createParticles(420); // Partículas douradas avançadas
+        animateParticles();
+
+        setTimeout(() => {
+            document.getElementById('gateLeft').classList.add('open');
+            document.getElementById('gateRight').classList.add('open');
+
+            setTimeout(() => {
+                document.getElementById('title').classList.add('show');
+                document.getElementById('enterBtn').classList.add('show');
+            }, 2100);
+        }, 700);
+    };
+
+    window.addEventListener('resize', resizeCanvas);
+
+    function enterSite() {
+        const intro = document.getElementById('intro');
+        intro.classList.add('show-temple');
+
+        setTimeout(() => {
+            intro.style.opacity = '0';
+        }, 900);
+
+        setTimeout(() => {
+            intro.style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 3000);
+    }
+
+    // CSS dinâmico para o fundo
+    const style = document.createElement('style');
+    style.innerHTML = `
+            #intro.show-temple::before {
+                opacity: 1 !important;
+            }
+        `;
+    document.head.appendChild(style);
