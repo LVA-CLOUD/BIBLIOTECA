@@ -15,10 +15,7 @@
 
 <body>
 
-
-
-
-    <div id="intro">
+    <!-- <div id="intro">
         <div class="gate-container">
             <div class="gate-left" id="gateLeft"></div>
             <div class="gate-right" id="gateRight"></div>
@@ -34,7 +31,7 @@
         </button>
 
         <canvas id="particles"></canvas>
-    </div>
+    </div> -->
 
 
 
@@ -74,13 +71,15 @@
         <div class="container">
 
             <!-- BLOCO 1: Imagem Esquerda | Texto Direito -->
-            <div class="row align-items-center bloco mb-5">
-                <div class="col-lg-10 order-lg-1" data-aos="fade-right">
+            <div class="row align-items-center mb-5">
+                <!-- Imagem: col-lg-6 (metade da tela) -->
+                <div class="col-lg-6" data-aos="fade-right">
                     <img src="./assets/img/LOGOS/atenas.jpg"
                         class="img-fluid rounded shadow-lg"
                         alt="Atenas Antiga">
                 </div>
-                <div class="col-lg-10 text-white" data-aos="fade-right">
+                <!-- Texto: col-lg-6 (outra metade) -->
+                <div class="col-lg-6 text-white pt-4 pt-lg-0" data-aos="fade-left">
                     <h2 class="titulo-bloco text-gold">
                         O Legado de Atenas
                     </h2>
@@ -96,9 +95,12 @@
                 </div>
             </div>
 
+            <div class="linhaS mb-5 mt-5">.</div>
+
             <!-- BLOCO 2: Texto Esquerda | Imagem Direita -->
-            <div class="row align-items-center bloco">
-                <div class="col-lg-6 text-white order-lg-1" data-aos="fade-left">
+            <div class="row align-items-center mt-5">
+                <!-- Texto: col-lg-6 | No mobile aparece primeiro, no desktop fica na esquerda -->
+                <div class="col-lg-6 text-white order-2 order-lg-1 pt-4 pt-lg-0" data-aos="fade-right">
                     <h2 class="titulo-bloco text-gold">
                         Conhecimento que Inspira
                     </h2>
@@ -112,7 +114,8 @@
                         a reflexão e o amor pela leitura.
                     </p>
                 </div>
-                <div class="col-lg-6 order-lg-2" data-aos="fade-right">
+                <!-- Imagem: col-lg-6 | No mobile aparece embaixo do texto, no desktop fica na direita -->
+                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
                     <img src="./assets/img/LOGOS/atenasantigamente.jpg"
                         class="img-fluid rounded shadow-lg"
                         alt="Atenas Antiga">
@@ -211,7 +214,7 @@
                                     <h5 class="card-title"><?= htmlspecialchars($livro['titulo']) ?></h5>
                                     <p class="card-text text-white-50 small"><?= htmlspecialchars($livro['nome_autor']) ?></p>
                                     <span class="badge bg-warning text-dark mb-3 w-50">ID: <?= str_pad($livro['id_livro'], 3, "0", STR_PAD_LEFT) ?></span>
-                                    <a href="login" class="btn btn-outline-gold mt-auto">Ver Detalhes</a>
+                                    <a href="./pages/login.php" class="btn btn-outline-gold mt-auto border-1  border-light">Ver Detalhes</a>
                                 </div>
                             </div>
                         </div>
@@ -309,71 +312,7 @@
         </div>
     </footer>
 
-    <style>
-        .text-gold {
-            color: var(--gold) !important;
-        }
 
-        .btn-gold {
-            background: var(--gold);
-            color: #000;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        .btn-outline-gold {
-            border: 2px solid var(--gold);
-            color: var(--gold);
-        }
-
-        .btn-outline-gold:hover {
-            background: var(--gold);
-            color: #000;
-        }
-
-        .livro-card {
-            transition: all 0.4s;
-        }
-
-        .livro-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2) !important;
-        }
-    </style>
-
-
-    <script>
-        document.querySelectorAll('.btn-destaque').forEach(switchEl => {
-            switchEl.addEventListener('change', function() {
-                const idLivro = this.getAttribute('data-id');
-                const status = this.checked ? 1 : 0;
-
-                // Efeito visual de carregamento (opcional)
-                this.style.opacity = '0.5';
-
-                fetch('../config/atualizar_destaque.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: `id_livro=${idLivro}&destaque=${status}`
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        this.style.opacity = '1';
-                        if (data.trim() !== "Sucesso") {
-                            alert("Erro ao atualizar destaque!");
-                            this.checked = !this.checked; // Reverte se der erro
-                        }
-                    })
-                    .catch(error => {
-                        this.style.opacity = '1';
-                        console.error('Erro:', error);
-                        this.checked = !this.checked;
-                    });
-            });
-        });
-    </script>
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>

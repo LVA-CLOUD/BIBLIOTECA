@@ -216,7 +216,7 @@ $result = $stmt->get_result();
                             <div class="mt-3 border-top pt-3">
                                 <div class="form-check form-switch d-flex justify-content-between align-items-center">
                                     <label class="form-check-label small fw-bold text-muted" for="destaque<?= $livro['id_livro'] ?>">
-                                        Destaque no Index
+                                        Destaque na Pagina Inicial
                                     </label>
                                     <input class="form-check-input btn-destaque"
                                         type="checkbox"

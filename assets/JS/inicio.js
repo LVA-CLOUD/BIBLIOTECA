@@ -105,3 +105,9 @@ ScrollTrigger.create({
     pin: true,          // Prende a seção .slider
     pinSpacing: false,  // IMPORTANTE: Remove o espaço, permitindo que a próxima seção suba por cima
 });
+
+
+
+
+// Mapa CN
+
