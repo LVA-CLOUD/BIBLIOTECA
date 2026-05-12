@@ -1,6 +1,7 @@
 <?php
-include("../config/verifica_funcionario.php");
 include_once("../config/conexao.php");
+include("../config/verifica_funcionario.php");
+
 
 $idAutor = filter_input(INPUT_GET, 'autor', FILTER_VALIDATE_INT);
 $categoria = $_GET['categoria'] ?? null;

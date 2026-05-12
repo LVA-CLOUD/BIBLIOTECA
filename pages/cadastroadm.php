@@ -35,7 +35,6 @@ $rankingLivros = $conn->query($sqlRanking);
 
 <head>
 <?php
-include_once("../config/conexao.php");
 
 // ------------------------
 // DADOS GERAIS
@@ -115,13 +114,11 @@ $totalAdmins = (int)($rowAdm['total'] ?? 0);
 
 <!-- CSS -->
 <link rel="stylesheet" href="../assets/css/dashboard.css">
-```
 
 </head>
 
 <body>
 
-```
 <nav class="navbar-vertical">
 
     <div class="logo">
